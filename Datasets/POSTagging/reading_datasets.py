@@ -52,9 +52,9 @@ def read_ritter():
 
     return data
 
-def read_tweebank():
-    location = 'Tweebank/'
-    filename = location + 'en-ud-tweet-train.conllu'
+def read_tweebank(split = 'train'):
+    location = 'Datasets/POSTagging/Tweebank/'
+    filename = location + 'en-ud-tweet-' + split + '.conllu'
 
     data = []
     tokens = []
