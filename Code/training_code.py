@@ -4,16 +4,15 @@ import torch
 from torch import cuda
 from torch.utils.data import Dataset, DataLoader
 from transformers import pipeline
-from transformers import BertTokenizerFast, BertConfig, BertForTokenClassification, BertTokenizer
 from transformers import AutoTokenizer, AutoModelForTokenClassification
 from sklearn.metrics import accuracy_score
 from seqeval.metrics import classification_report
 from load_data import initialize_data
-from Datasets.POSTagging.reading_datasets import read_tweebank
+from reading_datasets import read_ud_dataset
 from labels_to_ids import tweebank_labels_to_ids
 
 
-def train(epoch, training_loader, model, optimizer):
+def train(epoch, training_loader, model, optimizer, max_grad_norm = 10):
     tr_loss, tr_accuracy = 0, 0
     nb_tr_examples, nb_tr_steps = 0, 0
     tr_preds, tr_labels = [], []
@@ -56,13 +55,14 @@ def train(epoch, training_loader, model, optimizer):
     
         # gradient clipping
         torch.nn.utils.clip_grad_norm_(
-            parameters=model.parameters(), max_norm=MAX_GRAD_NORM
+            parameters=model.parameters(), max_norm=max_grad_norm
         )
         
         # backward pass
         optimizer.zero_grad()
         output[0].backward()
         optimizer.step()
+        break
 
     epoch_loss = tr_loss / nb_tr_steps
     tr_accuracy = tr_accuracy / nb_tr_steps
@@ -82,6 +82,7 @@ def testing(model, testing_loader):
     
     with torch.no_grad():
         for idx, batch in enumerate(testing_loader):
+            print('-'*20, 'BATCH:', idx)
             
             ids = batch['input_ids'].to(device, dtype = torch.long)
             mask = batch['attention_mask'].to(device, dtype = torch.long)
@@ -126,42 +127,58 @@ def testing(model, testing_loader):
 
     return labels, predictions, eval_accuracy
 
+def read_tb_gum():
+    tb_location = '../Datasets/POSTagging/Tweebank/'
+    train_tb = read_ud_dataset(dataset = 'tb', location = tb_location, split = 'train')
+    dev_tb = read_ud_dataset(dataset = 'tb', location = tb_location, split = 'dev')
+    test_tb = read_ud_dataset(dataset = 'tb', location = tb_location, split = 'test')
+
+    gum_location = '../Datasets/POSTagging/GUM/'
+    train_gum = read_ud_dataset(dataset = 'gum', location = gum_location, split = 'train')
+    dev_gum = read_ud_dataset(dataset = 'gum', location = gum_location, split = 'dev')
+    test_gum = read_ud_dataset(dataset = 'gum', location = gum_location, split = 'test')
+
+    train_labels = tweebank_labels_to_ids
+    dev_labels = tweebank_labels_to_ids
+    test_labels = tweebank_labels_to_ids
+
+    return train_tb, dev_tb, test_tb, train_gum, dev_gum, test_gum, train_labels, dev_labels, test_labels
+
 
 if __name__ == '__main__':
-    ##initialization parameters
+    #Initialization parameters
     max_len = 256
     train_batch_size = 32
-    dev_batch_size = 32
+    dev_batch_size = 1
     test_batch_size = 32
+    learning_rate = 1e-05
     initialization_input = (max_len, train_batch_size, dev_batch_size, test_batch_size)
-
-    epochs = 5
-    LEARNING_RATE = 1e-05
-    MAX_GRAD_NORM = 10
-
-    #load tokenizer
-    device = 'cuda' if cuda.is_available() else 'cpu' #save the processing time
-    tokenizer =  BertTokenizerFast
+    epochs = 10
 
     #Reading datasets and initializing data loaders
-    train_data = read_tweebank('train')
-    dev_data = read_tweebank('dev')
-    test_data = read_tweebank('test')
-    input_data = (train_data, dev_data, test_data, tweebank_labels_to_ids)
+    train_tb, dev_tb, test_tb, train_gum, dev_gum, test_gum, train_labels, dev_labels, test_labels = read_tb_gum()
+    input_data_gum = (train_gum, dev_gum, test_gum, train_labels, dev_labels, test_labels)
+    input_data_tb = (train_tb, dev_tb, test_tb, train_labels, dev_labels, test_labels)
 
-    train_loader, dev_loader, test_loader, labels_to_ids, ids_to_labels = initialize_data(tokenizer, initialization_input, input_data)
-
-    #load model
-    model = BertForTokenClassification.from_pretrained('bert-base-uncased', num_labels=len(labels_to_ids))
+    #Define tokenizer, model and optimizer
+    device = 'cuda' if cuda.is_available() else 'cpu' #save the processing time
+    model_name = "bert-base-uncased"
+    tokenizer =  AutoTokenizer.from_pretrained(model_name)
+    model = AutoModelForTokenClassification.from_pretrained(model_name, num_labels=len(train_labels))
+    optimizer = torch.optim.Adam(params=model.parameters(), lr=learning_rate)
     model.to(device)
 
-    optimizer = torch.optim.Adam(params=model.parameters(), lr=LEARNING_RATE)
+    #Get dataloaders
+    train_loader, dev_loader, test_loader = initialize_data(tokenizer, initialization_input, input_data_gum)
+    train_loader_tb, dev_loader_tb, test_loader_tb = initialize_data(tokenizer, initialization_input, input_data_tb)
+
 
     for epoch in range(epochs):
         print(f"Training epoch: {epoch + 1}")
-        model = train(epoch, train_loader, model, optimizer)
-        #labels, predictions = testing(model, dev_loader)
-        labels, predictions, accuracy = testing(model, test_loader)
-        #print(classification_report([labels], [predictions]))
+        #model = train(epoch, train_loader, model, optimizer)
+        labels_dev, predictions_dev, dev_accuracy = testing(model, dev_loader)
+        #labels_test, predictions_test, test_accuracy = testing(model, test_loader)
+        #labels_test_tb, predictions_test_tb, test_accuracy_tb = testing(model, test_loader_tb)
+        print(classification_report([labels_test], [predictions_test]))
         print()
         break

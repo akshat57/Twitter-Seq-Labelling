@@ -52,9 +52,11 @@ def read_ritter():
 
     return data
 
-def read_tweebank(split = 'train'):
-    location = 'Datasets/POSTagging/Tweebank/'
-    filename = location + 'en-ud-tweet-' + split + '.conllu'
+def read_ud_dataset(dataset = 'tb', location = '../Datasets/POSTagging/Tweebank/', split = 'train'):
+    if dataset == 'tb':
+        filename = location + 'en-ud-tweet-' + split + '.conllu'
+    elif dataset == 'gum':
+        filename = location + 'en_gum-ud-' + split + '.conllu'
 
     data = []
     tokens = []
@@ -65,8 +67,10 @@ def read_tweebank(split = 'train'):
 
             if len(line) and line[0] != '#':
                 line = line.split('\t')
-                tokens.append(line[1])
-                labels.append(line[3])
+                index = line[0]
+                if index.find('-') == -1:
+                    tokens.append(line[1])
+                    labels.append(line[3])
 
             elif len(line) == 0:
                 data.append((tokens, labels))
@@ -114,29 +118,9 @@ def get_all_labels(data):
     return all_labels
 
 if __name__ == '__main__':
-    read_conll2003()
-    exit()
-    
-    
-    gimpel_data = read_gimpel()
-    ritter_data = read_ritter()
-    tweebank_data = read_tweebank()
+    data = read_ud_dataset(dataset = 'gum', location = '../Datasets/POSTagging/GUM/', split = 'dev')
+    print(len(data))
 
-    gimpel_labels = get_all_labels(gimpel_data)
-    ritter_labels = get_all_labels(ritter_data)
-    tweebank_labels = get_all_labels(tweebank_data)
-
-    print('GIMPEL:', len(gimpel_labels))
-    print(gimpel_labels)
-    print()
-
-    print('RITTER:', len(ritter_labels))
-    print(ritter_labels)
-    print()
-
-    print('TWEEBANK:', len(tweebank_labels))
-    print(tweebank_labels)
-    print()
 
 
 

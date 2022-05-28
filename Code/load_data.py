@@ -18,8 +18,9 @@ class dataset(Dataset):
         joined_sentnece = ' '.join(sentence)
         word_labels = self.data[index][1]
 
-        print(sentence)
-        print(word_labels)
+        print(index)
+
+
 
         # step 2: use tokenizer to encode sentence (includes padding/truncation up to max length)
         # BertTokenizerFast provides a handy "return_offsets_mapping" functionality for individual tokens
@@ -29,29 +30,38 @@ class dataset(Dataset):
                              padding='max_length', 
                              truncation=True, 
                              max_length=self.max_len)
-        print('encoding finished')
 
         # step 3: create token labels only for first word pieces of each tokenized word
-        labels = [self.labels_to_ids[label] for label in word_labels] 
+        '''labels = []
+        for label in word_labels:
+          print('INSIDE', label)
+          labels.append(self.labels_to_ids[label] )'''
+        labels = [self.labels_to_ids[label] for label in word_labels if label in list(self.labels_to_ids.keys())] 
         # code based on https://huggingface.co/transformers/custom_datasets.html#tok-ner
         # create an empty array of -100 of length max_length
-        print(labels)
 
         encoded_labels = np.ones(len(encoding["offset_mapping"]), dtype=int) * -100
         
         # set only labels whose first offset position is 0 and the second is not 0
         i = 0
+        print(sentence)
+        print(word_labels)
+        print(labels)
+        print(encoding["offset_mapping"])
         for idx, mapping in enumerate(encoding["offset_mapping"]):
+          print(idx, mapping, i, len(labels))
           if mapping[0] == 0 and mapping[1] != 0:
+            print('ENTERED')
             # overwrite label
             encoded_labels[idx] = labels[i]
             i += 1
 
-
+        print('HERE')
         # step 4: turn everything into PyTorch tensors
         item = {key: torch.as_tensor(val) for key, val in encoding.items()}
         item['labels'] = torch.as_tensor(encoded_labels)
 
+        print('EXITING')
         return item
 
   def __len__(self):
@@ -61,15 +71,14 @@ class dataset(Dataset):
 
 def initialize_data(tokenizer, initialization_input, input_data):
   max_len, train_batch_size, dev_batch_size, test_batch_size = initialization_input
-  train_data, dev_data, test_data, labels_to_ids = input_data
-  ids_to_labels = dict((v,k) for k,v in labels_to_ids.items())
+  train_data, dev_data, test_data, labels_to_ids_train, labels_to_ids_dev, labels_to_ids_test  = input_data
 
-  training_set = dataset(train_data, tokenizer, labels_to_ids, max_len)
-  validation_set = dataset(dev_data, tokenizer, labels_to_ids, max_len)
-  testing_set = dataset(test_data, tokenizer, labels_to_ids, max_len)
+  training_set = dataset(train_data, tokenizer, labels_to_ids_train, max_len)
+  validation_set = dataset(dev_data, tokenizer, labels_to_ids_dev, max_len)
+  testing_set = dataset(test_data, tokenizer, labels_to_ids_test, max_len)
 
   train_params = {'batch_size': train_batch_size,
-              'shuffle': False,
+              'shuffle': True,
               'num_workers': 4
               }
 
@@ -87,7 +96,7 @@ def initialize_data(tokenizer, initialization_input, input_data):
   dev_loader = DataLoader(validation_set, **dev_params)
   test_loader = DataLoader(testing_set, **test_params)
 
-  return train_loader, dev_loader, test_loader, labels_to_ids, ids_to_labels
+  return train_loader, dev_loader, test_loader
 
 
 
