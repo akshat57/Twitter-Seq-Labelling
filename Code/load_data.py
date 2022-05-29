@@ -18,10 +18,6 @@ class dataset(Dataset):
         joined_sentnece = ' '.join(sentence)
         word_labels = self.data[index][1]
 
-        print(index)
-
-
-
         # step 2: use tokenizer to encode sentence (includes padding/truncation up to max length)
         # BertTokenizerFast provides a handy "return_offsets_mapping" functionality for individual tokens
         encoding = self.tokenizer(sentence,
@@ -32,10 +28,7 @@ class dataset(Dataset):
                              max_length=self.max_len)
 
         # step 3: create token labels only for first word pieces of each tokenized word
-        '''labels = []
-        for label in word_labels:
-          print('INSIDE', label)
-          labels.append(self.labels_to_ids[label] )'''
+        #labels = [self.labels_to_ids[label] for label in word_labels] 
         labels = [self.labels_to_ids[label] for label in word_labels if label in list(self.labels_to_ids.keys())] 
         # code based on https://huggingface.co/transformers/custom_datasets.html#tok-ner
         # create an empty array of -100 of length max_length
@@ -44,24 +37,18 @@ class dataset(Dataset):
         
         # set only labels whose first offset position is 0 and the second is not 0
         i = 0
-        print(sentence)
-        print(word_labels)
-        print(labels)
-        print(encoding["offset_mapping"])
         for idx, mapping in enumerate(encoding["offset_mapping"]):
-          print(idx, mapping, i, len(labels))
           if mapping[0] == 0 and mapping[1] != 0:
-            print('ENTERED')
             # overwrite label
             encoded_labels[idx] = labels[i]
             i += 1
+            if i == len(labels):
+              break
 
-        print('HERE')
         # step 4: turn everything into PyTorch tensors
         item = {key: torch.as_tensor(val) for key, val in encoding.items()}
         item['labels'] = torch.as_tensor(encoded_labels)
 
-        print('EXITING')
         return item
 
   def __len__(self):
