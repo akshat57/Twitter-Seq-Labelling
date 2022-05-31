@@ -5,8 +5,7 @@ from torch import cuda
 from torch.utils.data import Dataset, DataLoader
 from transformers import pipeline
 from transformers import AutoTokenizer, AutoModelForTokenClassification
-from sklearn.metrics import accuracy_score
-from seqeval.metrics import classification_report, f1_score
+from sklearn.metrics import accuracy_score, classification_report
 from load_data import initialize_data
 from reading_datasets import read_ud_dataset
 from labels_to_ids import tweebank_labels_to_ids
@@ -153,18 +152,28 @@ if __name__ == '__main__':
     learning_rate = 1e-05
     initialization_input = (max_len, train_batch_size, dev_batch_size, test_batch_size)
     epochs = 15
-    save_directory = '../saved_models/gum'
+
+    logfile_name = 'logs/training_logs_sym.txt'
+    model_save_flag = True
+    save_directory = '../../saved_models/gum_aug_sym_roberta'
+    model_load_flag = False
+    load_location = '../../saved_models/gum_aug3'
 
     #Reading datasets and initializing data loaders
     train_tb, dev_tb, test_tb, train_gum, dev_gum, test_gum, train_labels, dev_labels, test_labels = read_tb_gum()
-    input_data_gum = (train_gum, dev_gum, test_gum, train_labels, dev_labels, test_labels)
+    train_aug = load_data('../Datasets/POSTagging/GUM_augemented/train_aug_sym.pkl')
+    input_data_gum = (train_aug, dev_gum, test_gum, train_labels, dev_labels, test_labels)
     input_data_tb = (train_tb, dev_tb, test_tb, train_labels, dev_labels, test_labels)
 
     #Define tokenizer, model and optimizer
     device = 'cuda' if cuda.is_available() else 'cpu' #save the processing time
-    model_name = "bert-base-uncased"
-    tokenizer =  AutoTokenizer.from_pretrained(model_name)
-    model = AutoModelForTokenClassification.from_pretrained(model_name, num_labels=len(train_labels))
+    if model_load_flag:
+        tokenizer = AutoTokenizer.from_pretrained(load_location)
+        model = AutoModelForTokenClassification.from_pretrained(load_location)
+    else: 
+        model_name = "roberta-base"
+        tokenizer =  AutoTokenizer.from_pretrained(model_name, add_prefix_space=True)
+        model = AutoModelForTokenClassification.from_pretrained(model_name, num_labels=len(train_labels))
     optimizer = torch.optim.Adam(params=model.parameters(), lr=learning_rate)
     model.to(device)
 
@@ -174,11 +183,11 @@ if __name__ == '__main__':
 
     best_dev_acc = 0
     best_test_acc = 0
-    tb_f1 = 0
     for epoch in range(epochs):
         start = time.time()
         print(f"Training epoch: {epoch + 1}")
         
+
         #train model
         model = train(epoch, train_loader, model, optimizer)
         
@@ -196,25 +205,34 @@ if __name__ == '__main__':
         if dev_accuracy > best_dev_acc:
             best_dev_acc = dev_accuracy
             best_test_acc = test_accuracy
-            tb_f1 = f1_score([labels_test_tb], [predictions_test_tb])
-            os.makedirs(save_directory, exist_ok=True)
-            tokenizer.save_pretrained(save_directory)
-            model.save_pretrained(save_directory)
             save_data('logs/labels_test_tb.pkl', labels_test_tb)
-            save_data('logs/predictions_test_tb.pkl', labels_test_tb)
+            save_data('logs/predictions_test_tb.pkl', predictions_test_tb)
+            
+            if model_save_flag:
+                os.makedirs(save_directory, exist_ok=True)
+                tokenizer.save_pretrained(save_directory)
+                model.save_pretrained(save_directory)
 
-        f = open('logs/training_logs.txt', 'a')
-        f.write(classification_report([labels_test_tb], [predictions_test_tb]))
+
+        f = open(logfile_name, 'a')
+        f.write('EPOCH: ' + str(epoch) + '\n\n')
+        f.write('GUM TEST:' + '\n\n')
+        f.write(classification_report(labels_test, predictions_test))
+        f.write('\n\nTB TEST:' + '\n\n')
+        f.write(classification_report(labels_test_tb, predictions_test_tb))
         f.write('\nDEV ACC : ' + str(round(dev_accuracy, 5)) + '\n')
         f.write('TEST ACC : ' + str(round(test_accuracy, 5)) + '\n')
         f.write('TB TEST ACC : ' + str(round(test_accuracy_tb, 5)) + '\n')
-        f.write('TB F1 : ' + str(round(tb_f1, 5)) + '\n')
         f.write('BEST ACCURACY --> ' +  'DEV:' +  str(round(best_dev_acc, 5)) + 'TEST:' + str(round(best_test_acc, 5)) + '\n')
         f.write('-'*100 + '\n')
         f.close()
 
         now = time.time()
-        print('BEST ACCURACY --> ', 'DEV:', round(best_dev_acc, 5), 'TEST:',  round(best_test_acc, 5))
-        print('TB F1:', tb_f1)
+        print('BEST ACCURACY --> ', 'DEV:', round(best_dev_acc, 5), ', TEST:',  round(best_test_acc, 5))
         print('TIME PER EPOCH:', (now-start)/60 )
         print()
+
+
+#compare cased vs uncased
+#compare base vs large
+#compare bert, roberta,  

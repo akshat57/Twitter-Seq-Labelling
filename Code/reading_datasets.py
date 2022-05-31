@@ -1,4 +1,5 @@
 import pickle
+import json
 
 def load_data(filename):
     a_file = open(filename, "rb")
@@ -117,9 +118,36 @@ def get_all_labels(data):
     all_labels = set(all_labels)
     return all_labels
 
+def read_lexnorm(location = '../Datasets/WNUTlexnorm2015/'):
+    filename = location + 'train_data.json'
+    f = open(filename)
+    data = json.load(f)
+
+    inorm_dict = {}
+
+    for row in data:
+        for input_token, output_token in zip(row['input'], row['output']):
+            input_token = input_token.lower()
+            output_token = output_token.lower()
+
+            if input_token != output_token:
+                if output_token not in inorm_dict:
+                    inorm_dict[output_token] = [input_token]
+                else:
+                    inorm_dict[output_token].append(input_token)
+
+    for key in inorm_dict:
+        inorm_dict[key] = list(set(inorm_dict[key]))
+
+    return inorm_dict
+
+    
+
 if __name__ == '__main__':
-    data = read_ud_dataset(dataset = 'gum', location = '../Datasets/POSTagging/GUM/', split = 'dev')
-    print(len(data))
+    #data = read_ud_dataset(dataset = 'gum', location = '../Datasets/POSTagging/GUM/', split = 'dev')
+    #print(len(data))
+
+    read_lexnorm()
 
 
 
