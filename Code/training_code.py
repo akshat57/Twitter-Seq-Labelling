@@ -155,7 +155,8 @@ if __name__ == '__main__':
 
     logfile_name = 'logs/training_logs_sym.txt'
     model_save_flag = True
-    save_directory = '../../saved_models/gum_aug_sym_roberta'
+    model_name = "roberta-base"
+    save_directory = '../../saved_models/gum_aug_sym_' + model_name
     model_load_flag = False
     load_location = '../../saved_models/gum_aug3'
 
@@ -171,7 +172,6 @@ if __name__ == '__main__':
         tokenizer = AutoTokenizer.from_pretrained(load_location)
         model = AutoModelForTokenClassification.from_pretrained(load_location)
     else: 
-        model_name = "roberta-base"
         tokenizer =  AutoTokenizer.from_pretrained(model_name, add_prefix_space=True)
         model = AutoModelForTokenClassification.from_pretrained(model_name, num_labels=len(train_labels))
     optimizer = torch.optim.Adam(params=model.parameters(), lr=learning_rate)
