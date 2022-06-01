@@ -226,6 +226,7 @@ def main(n_epochs, model_name, train_dataset_location, model_save_flag, model_sa
         f.write('TB TEST ACC : ' + str(round(test_accuracy_tb, 5)) + '\n')
         f.write('BEST EPOCH : ' + str(best_epoch) + '\n')
         f.write('BEST ACCURACY --> ' +  'DEV:' +  str(round(best_dev_acc, 5)) + ', TEST:' + str(round(best_test_acc, 5)) + '\n')
+        f.write('BEST TB TEST ACC : ' + str(round(best_tb_acc, 5)) + '\n')
         f.write('-'*80 + '\n')
         f.close()
 

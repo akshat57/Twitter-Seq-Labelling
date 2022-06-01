@@ -1,3 +1,10 @@
 ==================================================
 MODEL NAME : bert-base-uncased | DATASET : GUM
 ==================================================
+ITERAION : 0
+BEST DEV ACC : 0.97863
+BEST TEST ACC : 0.97295
+BEST EPOCH : 12
+BEST TEST TB ACC : 0.79633
+BEST TB EPOCH : 11
+------------------------------
