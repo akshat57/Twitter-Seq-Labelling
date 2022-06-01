@@ -6,7 +6,7 @@ import numpy as np
 from symbols import twitter_symbols
 from reading_datasets import read_lexnorm
 
-def inorm_propn(data):
+def inorm_propn(data, multiplier = 1):
     #Do inverse lexical normalization for PROPN with @user1234 and hashtags
     
     augmented_data = []
@@ -18,11 +18,11 @@ def inorm_propn(data):
 
             if label == 'PROPN':
                 #Replacing with @user1234
-                if random.random() < 0.25:
+                if random.random() < 0.25 * multiplier:
                     username = '@USER' + str(random.randint(100, 9999))
                     new_token = username
                 #If not replacing with user, convert to hashtag
-                elif random.random() < 0.1:
+                elif random.random() < 0.1 * multiplier:
                     new_token = '#' + token
 
             new_tokens.append(new_token)
@@ -48,7 +48,7 @@ def collect_hashtags():
 
 
 
-def inorm_X(data):
+def inorm_X(data, multiplier = 1):
     '''
         Do inverse lexical normalization for X with RT, @user1234, URL and hashtags
 
@@ -67,7 +67,7 @@ def inorm_X(data):
     for tokens, labels in data:
 
         #Add RT, username to the beginning of the sentence
-        if random.random() < 0.3:
+        if random.random() < 0.3 * multiplier:
             username = '@USER' + str(random.randint(100, 9999))
 
             tokens.insert(0, username)
@@ -76,13 +76,13 @@ def inorm_X(data):
             labels.insert(0, 'X')
 
         #Add URL to the end of the sentence
-        if random.random() < 0.35:
+        if random.random() < 0.3 * multiplier:
             url = 'URL' + str(random.randint(10, 9999))
             tokens.append(url)
             labels.append('X')
 
         #Add random hashtags from the unlabelled train set
-        if random.random() < 0.18:
+        if random.random() < 0.2 * multiplier:
             index = int( min( max(0, np.random.normal(0.8070, 0.266, 1) ), 1) * len(tokens) )
             selected_hashtag = random.choice(hashtags)
 
@@ -95,7 +95,7 @@ def inorm_X(data):
 
 
 
-def inorm_sym(data, twitter_symbols):
+def inorm_sym(data, twitter_symbols, threshold = 0.25):
     #Add twitter like symbols in randomly
 
     twitter_symbols = list(set(twitter_symbols))
@@ -103,7 +103,7 @@ def inorm_sym(data, twitter_symbols):
 
     for tokens, labels in data:
         #Add random twitter symbols from the unlabelled train set
-        if random.random() < 0.25:
+        if random.random() < threshold:
             index = int( min( max(0, np.random.normal(0.771, 0.269, 1) ), 1) * len(tokens) )
             selected_symbol = random.choice(twitter_symbols)
 
@@ -114,7 +114,7 @@ def inorm_sym(data, twitter_symbols):
 
     return augmented_data
 
-def do_ilexnorm(data):
+def do_ilexnorm(data, threshold = 0.8):
     #Do inverse lexcial normalization
     inorm_dict = read_lexnorm()
     augmented_data = []
@@ -129,8 +129,8 @@ def do_ilexnorm(data):
             new_token = token.lower()
 
             if new_token in inorm_dict:
-                #do lexical un-normalization with 80% of the times the word is found in dictionary
-                if random.random() < 0.8:
+                #do lexical un-normalization with [THRESHOLD]% of the times the word is found in dictionary
+                if random.random() < threshold:
                     new_token = random.choice(inorm_dict[new_token])
                     word_count += 1
 
@@ -161,20 +161,8 @@ if __name__ == '__main__':
 
     train_tb, dev_tb, test_tb, train_gum, dev_gum, test_gum = read_tb_gum()
 
-    augmented_data = inverse_lexical_norm(train_gum, twitter_symbols)
-    save_data('../Datasets/POSTagging/GUM_augemented/train_aug4.pkl', augmented_data)
+    #augmented_data = inverse_lexical_norm(train_gum, twitter_symbols)
 
-
-    location = []
-    collector = []
-    count = 0
-    for tokens, labels in test_tb:
-        for i, (token, label) in enumerate(zip(tokens, labels)):
-            if label == 'SYM':
-                #print(i, token, label)
-                #print(token)
-                location.append((i+1)/len(tokens))
-                collector.append(token)
-                count += 1
-
-    print(np.mean(np.array(location)), np.std(np.array(location)))
+    for multiplier in [1, 2, 3]:
+        augmented_data = inorm_X(train_gum, multiplier = 1)
+        save_data('../Datasets/POSTagging/GUM_augemented/train_GUM_X_' + str(multiplier) + '.pkl', augmented_data)
