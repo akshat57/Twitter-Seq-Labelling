@@ -165,4 +165,4 @@ if __name__ == '__main__':
 
     for multiplier in [1, 2, 3]:
         augmented_data = inorm_X(train_gum, multiplier = 1)
-        save_data('../Datasets/POSTagging/GUM_augemented/train_GUM_X_' + str(multiplier) + '.pkl', augmented_data)
+        save_data('../Datasets/POSTagging/GUM_augemented/train_GUM_X_' + str( int(multiplier) ) + '.pkl', augmented_data)
