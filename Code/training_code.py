@@ -250,7 +250,7 @@ if __name__ == '__main__':
 
     models = ['vinai/bertweet-large', 'bert-large-uncased', 'roberta-large', 'xlm-roberta-large']
     train_dataset_directory = '../Datasets/POSTagging/GUM_augemented/'
-    training_datasets = ['tweebank']#only have strings in here. Also, remove .pkl
+    training_datasets = ['train_GUM_sym_loc_25', 'train_GUM_sym_random_25']#only have strings in here. Also, remove .pkl
 
 
     for model_name in models:
