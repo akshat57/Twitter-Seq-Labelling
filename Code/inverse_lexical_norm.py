@@ -95,7 +95,7 @@ def inorm_X(data, add_user = True, add_url = True, add_hashtag = True, multiplie
 
 
 
-def inorm_sym(data, twitter_symbols, random_placement = False, random_symbol_selection = True, threshold = 0.25)::
+def inorm_sym(data, twitter_symbols, random_placement = False, random_symbol_selection = True, threshold = 0.25):
     #Add twitter like symbols in randomly
 
     twitter_symbols = list(set(twitter_symbols))
@@ -163,8 +163,5 @@ if __name__ == '__main__':
 
     train_tb, dev_tb, test_tb, train_gum, dev_gum, test_gum = read_tb_gum()
 
-    #augmented_data = inverse_lexical_norm(train_gum, twitter_symbols)
-
-    for threshold in [0.1, 0.2, 0.3, 0.4]:
-        augmented_data = inorm_sym(train_gum, twitter_symbols, threshold)
-        save_data('../Datasets/POSTagging/GUM_augemented/train_GUM_sym_' + str( int(threshold * 100) ) + '.pkl', augmented_data)
+    augmented_data = inorm_sym(train_gum, twitter_symbols, random_placement = True, random_symbol_selection = True, threshold = 0.25)
+    save_data('../Datasets/POSTagging/GUM_augemented/train_GUM_sym_random_25.pkl', augmented_data)
