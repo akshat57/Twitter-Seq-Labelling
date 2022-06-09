@@ -48,7 +48,7 @@ def collect_hashtags():
 
 
 
-def inorm_X(data, add_user = True, add_url = True, add_hashtag = True, multiplier = 1):
+def inorm_X(data, add_user = True, add_url = True, add_hashtag = True, hashtag_random_placement= False,  multiplier = 1):
     '''
         Do inverse lexical normalization for X with RT, @user1234, URL and hashtags
 
@@ -73,17 +73,23 @@ def inorm_X(data, add_user = True, add_url = True, add_hashtag = True, multiplie
             tokens.insert(0, username)
             tokens.insert(0, 'RT')
             labels.insert(0, 'X')
-            labels.insert(0, 'X')
+            labels.insert(0, 'X') 
 
         #Add URL to the end of the sentence
-        if add_url and random.random() < 0.3 * multiplier:
+        if add_url and random.random() < 0.6 * multiplier:
             url = 'URL' + str(random.randint(10, 9999))
             tokens.append(url)
             labels.append('X')
 
         #Add random hashtags from the unlabelled train set
-        if add_hashtag and random.random() < 0.2 * multiplier:
-            index = int( min( max(0, np.random.normal(0.8070, 0.266, 1) ), 1) * len(tokens) )
+        if add_hashtag and random.random() < 0.2 * multiplier: 
+            #placing the symbol randomly vs based on distribution
+            if hashtag_random_placement:
+                index = random.randint(0, len(tokens) - 1)
+            else:
+                index = int( min( max(0, np.random.normal(0.8070, 0.266, 1) ), 1) * len(tokens) )
+
+
             selected_hashtag = random.choice(hashtags)
 
             tokens.insert(index, selected_hashtag)
@@ -163,5 +169,6 @@ if __name__ == '__main__':
 
     train_tb, dev_tb, test_tb, train_gum, dev_gum, test_gum = read_tb_gum()
 
-    augmented_data = inorm_sym(train_gum, twitter_symbols, random_placement = True, random_symbol_selection = True, threshold = 0.25)
-    save_data('../Datasets/POSTagging/GUM_augemented/train_GUM_sym_random_25.pkl', augmented_data)
+    augmented_data = inorm_X(train_gum, add_user = True, add_url = True, add_hashtag = True, hashtag_random_placement= True,  multiplier = 1)
+    #augmented_data = inorm_sym(train_gum, twitter_symbols, random_placement = True, random_symbol_selection = True, threshold = 0.25)
+    save_data('../Datasets/POSTagging/GUM_augemented/train_GUM_X_hashtag_random.pkl', augmented_data)
