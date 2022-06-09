@@ -14,12 +14,13 @@ import os
 from useful_functions import load_data, save_data
 
 
-def train(epoch, training_loader, model, optimizer, device, max_grad_norm = 10):
+def train(epoch, training_loader, model, optimizer, device, grad_step = 1, max_grad_norm = 10):
     tr_loss, tr_accuracy = 0, 0
     nb_tr_examples, nb_tr_steps = 0, 0
     tr_preds, tr_labels = [], []
     # put model in training mode
     model.train()
+    optimizer.zero_grad()
     
     for idx, batch in enumerate(training_loader):
         ids = batch['input_ids'].to(device, dtype = torch.long)
@@ -57,9 +58,10 @@ def train(epoch, training_loader, model, optimizer, device, max_grad_norm = 10):
         )
         
         # backward pass
-        optimizer.zero_grad()
         output['loss'].backward()
-        optimizer.step()
+        if (idx + 1) % grad_step == 0:
+            optimizer.step()
+            optimizer.zero_grad()
 
     epoch_loss = tr_loss / nb_tr_steps
     tr_accuracy = tr_accuracy / nb_tr_steps
@@ -145,15 +147,16 @@ def read_tb_gum():
 def main(n_epochs, model_name, train_dataset_location, model_save_flag, model_save_location, model_load_flag, model_load_location, in_train_logfile):
     #Initialization training parameters
     max_len = 256
-    train_batch_size = 32
-    dev_batch_size = 32
-    test_batch_size = 32
+    train_batch_size = 8
+    dev_batch_size = 8
+    test_batch_size = 8
+    grad_step = 4
     learning_rate = 1e-05
     initialization_input = (max_len, train_batch_size, dev_batch_size, test_batch_size)
 
     #Reading datasets and initializing data loaders
     train_tb, dev_tb, test_tb, train_gum, dev_gum, test_gum, train_labels, dev_labels, test_labels = read_tb_gum()
-    if train_dataset_location == 'GUM':
+    if train_dataset_location == 'GUM' or True:
         train_data = train_gum
     else:
         train_data = load_data(train_dataset_location)
@@ -187,7 +190,7 @@ def main(n_epochs, model_name, train_dataset_location, model_save_flag, model_sa
         print(f"Training epoch: {epoch + 1}")
 
         #train model
-        model = train(epoch, train_loader, model, optimizer, device)
+        model = train(epoch, train_loader, model, optimizer, device, grad_step)
         
         #testing and logging
         labels_dev, predictions_dev, dev_accuracy = testing(model, dev_loader, dev_labels, device)
@@ -242,12 +245,12 @@ def main(n_epochs, model_name, train_dataset_location, model_save_flag, model_sa
 
 
 if __name__ == '__main__':
-    n_epochs = 15
+    n_epochs = 25
     n_iterations = 5
 
-    models = ['bert-base-uncased', 'roberta-base', 'xlm-roberta-base']
+    models = ['vinai/bertweet-large', 'bert-large-uncased', 'roberta-large', 'xlm-roberta-large']
     train_dataset_directory = '../Datasets/POSTagging/GUM_augemented/'
-    training_datasets = ['GUM']#only have strings in here. Also, remove .pkl
+    training_datasets = ['tweebank']#only have strings in here. Also, remove .pkl
 
 
     for model_name in models:
@@ -260,23 +263,23 @@ if __name__ == '__main__':
             #model saving parameters
             model_save_flag = True
             model_load_flag = False
-            model_save_location = '../../saved_models/' + model_name + '_' + dataset
+            model_save_location = '../../saved_models/' + model_name.replace('/', '-') + '_' + dataset
             model_load_location = None
     
             #logfile
-            in_train_logfile = 'logs/training_logs/intrain_' + model_name + '_' + dataset + '.txt'
-            result_logfile = 'logs/training_logs/results_' + model_name + '_' + dataset + '.txt'
+            in_train_logfile = 'logs/training_logs/intrain_' + model_name.replace('/', '-') + '_' + dataset + '.txt'
+            result_logfile = 'logs/training_logs/results_' + model_name.replace('/', '-') + '_' + dataset + '.txt'
 
             #initialize logfiles
             f = open(in_train_logfile, 'w')
             f.write('='*50 + '\n')
-            f.write('MODEL NAME : ' + model_name + ' | ' + 'DATASET : ' + dataset + '\n')
+            f.write('MODEL NAME : ' + model_name.replace('/', '-') + ' | ' + 'DATASET : ' + dataset + '\n')
             f.write('='*50 + '\n')
             f.close()
 
             g = open(result_logfile, 'w')
             g.write('='*50 + '\n')
-            g.write('MODEL NAME : ' + model_name + ' | ' + 'DATASET : ' + dataset + '\n')
+            g.write('MODEL NAME : ' + model_name.replace('/', '-') + ' | ' + 'DATASET : ' + dataset + '\n')
             g.write('='*50 + '\n')
             g.close()
 
@@ -306,7 +309,7 @@ if __name__ == '__main__':
                 g.write('-'*30 + '\n')
                 g.close()
 
-            
+            #writing mean results
             g = open(result_logfile, 'a')
             g.write('\nFINAL RESULTS : ' + '\n')
             g.write('MEAN DEV ACC : ' + str(round( np.mean(np.array(all_dev_acc)) * 100, 3)) + '|' + 'STD DEV ACC : ' + str(round( np.std(np.array(all_dev_acc)) * 100, 3)) + '\n')

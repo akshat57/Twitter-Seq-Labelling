@@ -147,7 +147,11 @@ if __name__ == '__main__':
     #data = read_ud_dataset(dataset = 'gum', location = '../Datasets/POSTagging/GUM/', split = 'dev')
     #print(len(data))
 
-    read_lexnorm()
+    #read_lexnorm()
+    data = read_ud_dataset('tb')
+
+    for i, (tokens, labels) in enumerate(data):
+        print(' '.join(tokens), '|', ' '.join(labels))
 
 
 
