@@ -1,5 +1,6 @@
 import pickle
 import json
+from labels_to_ids import ner_labels_to_ids
 
 def load_data(filename):
     a_file = open(filename, "rb")
@@ -142,16 +143,65 @@ def read_lexnorm(location = '../Datasets/WNUTlexnorm2015/'):
     return inorm_dict
 
     
+def reading_connll_ner(location = '../Datasets/NER/CONLL2003/', split = 'train'):
+    
+    filename = location + 'connll_ner_' + split + '.pkl'
+    data = load_data(filename)
+
+    return data
+
+
+def reading_tb_ner(location = '../Datasets/NER/Tweebank/', split = 'train'):
+    if split == 'train':
+        filename = location + 'train.bio'
+    elif split == 'dev':
+        filename = location + 'dev.bio'
+    elif split == 'test':
+        filename = location + 'test.bio'
+
+    data = []
+    tokens = []
+    labels = []
+    with open(filename, 'r') as file:
+        for i, line in enumerate(file):
+            line = line[:-1]
+
+            if len(line):
+                token, _, _, label = line.split('\t')
+                tokens.append(token.lower())
+                labels.append(label.strip())
+
+            else:
+                data.append((tokens, labels))
+                tokens = []
+                labels = []
+
+    return data
+
 
 if __name__ == '__main__':
     #data = read_ud_dataset(dataset = 'gum', location = '../Datasets/POSTagging/GUM/', split = 'dev')
     #print(len(data))
 
     #read_lexnorm()
-    data = read_ud_dataset('tb')
+    data = reading_connll_ner()
+
+    all_labels = []
+    freq = {}
 
     for i, (tokens, labels) in enumerate(data):
-        print(' '.join(tokens), '|', ' '.join(labels))
+        #print(i, ' '.join(tokens), '|', ' '.join(labels))
+        all_labels.extend(labels)
+
+        for label in labels:
+            if label not in freq:
+                freq[label] = 1
+            else:
+                freq[label] += 1
+
+    print(set(all_labels))
+
+    
 
 
 

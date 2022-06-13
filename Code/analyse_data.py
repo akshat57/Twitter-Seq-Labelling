@@ -4,6 +4,9 @@ import seaborn as sns
 import pandas as pd
 from textblob import TextBlob
 import numpy as np
+from reading_datasets import reading_connll_ner, reading_tb_ner
+from labels_to_ids import ner_labels_to_ids
+import numpy as np
 
 def read_tb_gum():
     tb_location = '../Datasets/POSTagging/Tweebank/'
@@ -98,15 +101,76 @@ def calculate_features(train_tb, train_gum):
     plt.savefig('logs/subjectivity.jpg')
 
 
+def ner_distribution(dataset = 'connll'):
+    '''
+    OBSERVATIONS:
+    Twitter has a very different distribution of length of sentences compared to CONNLL. See plots
+    The avg sentence length in connll is although 13, but with high standard deviation. 
+    The range of sentence lengths are also fixed.
+    CONNLL has an unusually large number of sentences with lengths around 3-4.
+    The first change syntactic change that can be made is distributional although not sure how much that will help.
+
+    The NER tags are different. 
+    Twitter has a larger number of O tags.
+
+    The ratio of B:I for person in Twitter is small. Which means a lot of people in Twitter have shorter names whereas in connll have bigger names. Maybe user mentions?
+            ##Look at shorted PER in twitter dataset
+
+    The ratio of B:I for orgs in Twitter is larger than CONNLL. 
+            ##Understand why this is so
+
+    The ratio of B:I for location is roughly similar
+
+    The ration for B:I for MISC way less for CONNLL. Twitter has longer MISC entitites. Find out why?
+
+    '''
+
+    if dataset == 'connll':
+        data = reading_connll_ner()
+    elif dataset == 'tb':
+        data = reading_tb_ner()
+
+    all_labels = []
+    freq = {}
+
+    sent_len = []
+    for i, (tokens, labels) in enumerate(data):
+        all_labels.extend(labels)
+
+        for label in labels:
+            if label not in freq:
+                freq[label] = 1
+            else:
+                freq[label] += 1
+
+        sent_len.append(len(tokens))
+
+    sent_len = np.array(sent_len)
+    print(dataset, 'AVG SENT LENGTH:', np.mean(sent_len), np.std(sent_len), 'MIN:', np.min(sent_len), 'MAX:', np.max(sent_len))
+
+    sns.distplot(sent_len)
+    plt.savefig('logs/ner_sent_len_' + dataset + '.jpg')
+    plt.close()
+    
+    normalized = {}
+    for label in ner_labels_to_ids:
+        normalized[label] = round( (freq[label]/sum(freq.values())) * 100, 5) 
+
+    plt.bar(range(len(normalized)), list(normalized.values()), align='center')
+    plt.xticks(range(len(normalized)), list(normalized.keys()))
+    plt.savefig('logs/ner_' + dataset + '.jpg')
+    plt.close()
+
+    return normalized
 
     
 
 if __name__ == '__main__':
 
-    train_tb, dev_tb, test_tb, train_gum, dev_gum, test_gum = read_tb_gum()
+    #train_tb, dev_tb, test_tb, train_gum, dev_gum, test_gum = read_tb_gum()
     #token_number_distribution(train_tb, train_gum)
     #pos_tagging_distribution(train_tb, train_gum)
-    calculate_features(train_tb, train_gum)
+    #calculate_features(train_tb, train_gum)
 
     #look at distribution of each POS tag
     #look at distribution of POS tag per sentence
@@ -121,8 +185,11 @@ if __name__ == '__main__':
     #SEE IF MAKING GUM DISTRIBUTION CLOSER TO TB HELPS IN PERFORMANCE
 
 
+    normalized_connll = ner_distribution('connll')
+    normalized_tb = ner_distribution('tb')
 
-
+    for ner in ner_labels_to_ids:
+        print(ner, 'C:', normalized_connll[ner], 'T:', normalized_tb[ner])
 
     
 

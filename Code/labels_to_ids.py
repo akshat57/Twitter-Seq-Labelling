@@ -17,3 +17,15 @@ tweebank_labels_to_ids = {
     'SCONJ' : 15,
     'X' : 16,
 }
+
+ner_labels_to_ids = {
+    'B-PER' : 0,
+    'I-PER' : 1,
+    'B-ORG' : 2,
+    'I-ORG' : 3,
+    'B-LOC' : 4, 
+    'I-LOC' : 5,
+    'B-MISC' : 6,
+    'I-MISC' : 7, 
+    'O' : 8,   
+}

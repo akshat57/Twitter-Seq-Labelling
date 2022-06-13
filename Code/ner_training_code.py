@@ -7,14 +7,17 @@ from transformers import pipeline
 from transformers import AutoTokenizer, AutoModelForTokenClassification
 from sklearn.metrics import accuracy_score, classification_report
 from load_data import initialize_data
-from reading_datasets import read_ud_dataset
-from labels_to_ids import tweebank_labels_to_ids
+from reading_datasets import reading_connll_ner, reading_tb_ner
+from labels_to_ids import ner_labels_to_ids
 import time
 import os
 from useful_functions import load_data, save_data
+import torch.nn as nn
+os.environ["CUDA_DEVICE_ORDER"] = "PCI_BUS_ID"
+os.environ["CUDA_VISIBLE_DEVICES"]="0"
 
 
-def train(epoch, training_loader, model, optimizer, device, grad_step = 1, max_grad_norm = 10):
+def train(epoch, training_loader, model, optimizer, device, train_labels, grad_step = 1, max_grad_norm = 10):
     tr_loss, tr_accuracy = 0, 0
     nb_tr_examples, nb_tr_steps = 0, 0
     tr_preds, tr_labels = [], []
@@ -22,7 +25,13 @@ def train(epoch, training_loader, model, optimizer, device, grad_step = 1, max_g
     model.train()
     optimizer.zero_grad()
     
+    start = time.time()
     for idx, batch in enumerate(training_loader):
+        '''if (idx + 1) % 20 == 0:
+            now = time.time()
+            print(idx, len(training_loader), 'TIME:', round(now - start, 3))
+            start = time.time()'''
+
         ids = batch['input_ids'].to(device, dtype = torch.long)
         mask = batch['attention_mask'].to(device, dtype = torch.long)
         labels = batch['labels'].to(device, dtype = torch.long)
@@ -36,7 +45,7 @@ def train(epoch, training_loader, model, optimizer, device, grad_step = 1, max_g
            
         # compute training accuracy
         flattened_targets = labels.view(-1) # shape (batch_size * seq_len,)
-        active_logits = output[1].view(-1, model.num_labels) # shape (batch_size * seq_len, num_labels)
+        active_logits = output[1].view(-1, len(train_labels)) # shape (batch_size * seq_len, num_labels)
         flattened_predictions = torch.argmax(active_logits, axis=1) # shape (batch_size * seq_len,)
         
         # only compute accuracy at active labels
@@ -58,7 +67,7 @@ def train(epoch, training_loader, model, optimizer, device, grad_step = 1, max_g
         )
         
         # backward pass
-        output['loss'].backward()
+        output['loss'].mean().backward()
         if (idx + 1) % grad_step == 0:
             optimizer.step()
             optimizer.zero_grad()
@@ -91,18 +100,16 @@ def testing(model, testing_loader, labels_to_ids, device):
             #loss, eval_logits = model(input_ids=ids, attention_mask=mask, labels=labels)
             output = model(input_ids=ids, attention_mask=mask, labels=labels)
 
-            eval_loss += output['loss'].item()
+            eval_loss += output['loss'].mean().item()
 
             nb_eval_steps += 1
             nb_eval_examples += labels.size(0)
         
-            if idx % 100==0:
-                loss_step = eval_loss/nb_eval_steps
-                print(f"Validation loss per 100 evaluation steps: {loss_step}")
+
               
             # compute evaluation accuracy
             flattened_targets = labels.view(-1) # shape (batch_size * seq_len,)
-            active_logits = output[1].view(-1, model.num_labels) # shape (batch_size * seq_len, num_labels)
+            active_logits = output[1].view(-1, len(labels_to_ids)) # shape (batch_size * seq_len, num_labels)
             flattened_predictions = torch.argmax(active_logits, axis=1) # shape (batch_size * seq_len,)
             
             # only compute accuracy at active labels
@@ -127,22 +134,22 @@ def testing(model, testing_loader, labels_to_ids, device):
 
     return labels, predictions, eval_accuracy
 
-def read_tb_gum():
-    tb_location = '../Datasets/POSTagging/Tweebank/'
-    train_tb = read_ud_dataset(dataset = 'tb', location = tb_location, split = 'train')
-    dev_tb = read_ud_dataset(dataset = 'tb', location = tb_location, split = 'dev')
-    test_tb = read_ud_dataset(dataset = 'tb', location = tb_location, split = 'test')
+def read_ner_base():
+    connll_location = '../Datasets/NER/CONLL2003/'
+    train_con = reading_connll_ner(location = connll_location, split = 'train')
+    dev_con = reading_connll_ner(location = connll_location, split = 'dev')
+    test_con = reading_connll_ner(location = connll_location, split = 'test')
 
-    gum_location = '../Datasets/POSTagging/GUM/'
-    train_gum = read_ud_dataset(dataset = 'gum', location = gum_location, split = 'train')
-    dev_gum = read_ud_dataset(dataset = 'gum', location = gum_location, split = 'dev')
-    test_gum = read_ud_dataset(dataset = 'gum', location = gum_location, split = 'test')
+    tb_location = '../Datasets/NER/Tweebank/'
+    train_tb = reading_tb_ner(location = tb_location, split = 'train')
+    dev_tb = reading_tb_ner(location = tb_location, split = 'dev')
+    test_tb = reading_tb_ner(location = tb_location, split = 'test')
 
-    train_labels = tweebank_labels_to_ids
-    dev_labels = tweebank_labels_to_ids
-    test_labels = tweebank_labels_to_ids
+    train_labels = ner_labels_to_ids
+    dev_labels = ner_labels_to_ids
+    test_labels = ner_labels_to_ids
 
-    return train_tb, dev_tb, test_tb, train_gum, dev_gum, test_gum, train_labels, dev_labels, test_labels
+    return train_tb, dev_tb, test_tb, train_con, dev_con, test_con, train_labels, dev_labels, test_labels
 
 def main(n_epochs, model_name, train_dataset_location, model_save_flag, model_save_location, model_load_flag, model_load_location, in_train_logfile):
     #Initialization training parameters
@@ -155,14 +162,14 @@ def main(n_epochs, model_name, train_dataset_location, model_save_flag, model_sa
     initialization_input = (max_len, train_batch_size, dev_batch_size, test_batch_size)
 
     #Reading datasets and initializing data loaders
-    train_tb, dev_tb, test_tb, train_gum, dev_gum, test_gum, train_labels, dev_labels, test_labels = read_tb_gum()
-    if train_dataset_location == 'GUM':
-        train_data = train_gum
+    train_tb, dev_tb, test_tb, train_con, dev_con, test_con, train_labels, dev_labels, test_labels = read_ner_base()
+    if train_dataset_location == 'CONNLL':
+        train_data = train_con
     else:
         train_data = load_data(train_dataset_location)
         
 
-    input_data_gum = (train_data, dev_gum, test_gum, train_labels, dev_labels, test_labels)
+    input_data_con = (train_data, dev_con, test_con, train_labels, dev_labels, test_labels)
     input_data_tb = (train_tb, dev_tb, test_tb, train_labels, dev_labels, test_labels)
 
     #Define tokenizer, model and optimizer
@@ -174,10 +181,15 @@ def main(n_epochs, model_name, train_dataset_location, model_save_flag, model_sa
         tokenizer =  AutoTokenizer.from_pretrained(model_name, add_prefix_space=True)
         model = AutoModelForTokenClassification.from_pretrained(model_name, num_labels=len(train_labels))
     optimizer = torch.optim.Adam(params=model.parameters(), lr=learning_rate)
+
+    if torch.cuda.device_count() > 1:
+        print("Using", torch.cuda.device_count(), "GPUs!")
+        model = nn.DataParallel(model)
+
     model.to(device)
 
     #Get dataloaders
-    train_loader, dev_loader, test_loader = initialize_data(tokenizer, initialization_input, input_data_gum)
+    train_loader, dev_loader, test_loader = initialize_data(tokenizer, initialization_input, input_data_con)
     train_loader_tb, dev_loader_tb, test_loader_tb = initialize_data(tokenizer, initialization_input, input_data_tb)
 
     best_dev_acc = 0
@@ -190,7 +202,7 @@ def main(n_epochs, model_name, train_dataset_location, model_save_flag, model_sa
         print(f"Training epoch: {epoch + 1}")
 
         #train model
-        model = train(epoch, train_loader, model, optimizer, device, grad_step)
+        model = train(epoch, train_loader, model, optimizer, device, train_labels, grad_step)
         
         #testing and logging
         labels_dev, predictions_dev, dev_accuracy = testing(model, dev_loader, dev_labels, device)
@@ -220,10 +232,10 @@ def main(n_epochs, model_name, train_dataset_location, model_save_flag, model_sa
         #logging
         f = open(in_train_logfile, 'a')
         f.write('EPOCH: ' + str(epoch) + '\n\n')
-        f.write('GUM TEST:' + '\n\n')
+        f.write('CONNLL TEST:' + '\n\n')
         f.write(classification_report(labels_test, predictions_test, digits = 5))
         f.write('\n\nTB TEST:' + '\n\n')
-        f.write(classification_report(labels_test_tb, predictions_test_tb))
+        f.write(classification_report(labels_test_tb, predictions_test_tb, digits = 5))
         f.write('\nDEV ACC : ' + str(round(dev_accuracy, 5)) + '\n')
         f.write('TEST ACC : ' + str(round(test_accuracy, 5)) + '\n')
         f.write('TB TEST ACC : ' + str(round(test_accuracy_tb, 5)) + '\n')
@@ -245,17 +257,18 @@ def main(n_epochs, model_name, train_dataset_location, model_save_flag, model_sa
 
 
 if __name__ == '__main__':
-    n_epochs = 25
+    n_epochs = 20
     n_iterations = 5
 
-    models = ['vinai/bertweet-large', 'bert-large-uncased', 'roberta-large', 'xlm-roberta-large']
-    train_dataset_directory = '../Datasets/POSTagging/GUM_augemented/'
-    training_datasets = ['train_GUM_sym_loc_25', 'train_GUM_sym_random_25']#only have strings in here. Also, remove .pkl
+    #models = ['bert-large-uncased', 'vinai/bertweet-large', 'roberta-large', 'xlm-roberta-large']
+    models = ['bert-base-uncased']
+    train_dataset_directory = '../Datasets/NER/CONNLL_augemented/'
+    training_datasets = ['CONNLL']#only have strings in here. Also, remove .pkl
 
 
     for model_name in models:
         for dataset in training_datasets:
-            if dataset == 'GUM':
+            if dataset == 'CONNLL':
                 train_dataset_location = dataset
             else:
                 train_dataset_location = train_dataset_directory  + dataset + '.pkl'
