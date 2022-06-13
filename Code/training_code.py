@@ -156,7 +156,7 @@ def main(n_epochs, model_name, train_dataset_location, model_save_flag, model_sa
 
     #Reading datasets and initializing data loaders
     train_tb, dev_tb, test_tb, train_gum, dev_gum, test_gum, train_labels, dev_labels, test_labels = read_tb_gum()
-    if train_dataset_location == 'GUM' or True:
+    if train_dataset_location == 'GUM':
         train_data = train_gum
     else:
         train_data = load_data(train_dataset_location)
