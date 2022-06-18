@@ -169,6 +169,8 @@ if __name__ == '__main__':
 
     train_tb, dev_tb, test_tb, train_gum, dev_gum, test_gum = read_tb_gum()
 
-    augmented_data = inorm_X(train_gum, add_user = True, add_url = True, add_hashtag = True, hashtag_random_placement= True,  multiplier = 1)
-    #augmented_data = inorm_sym(train_gum, twitter_symbols, random_placement = True, random_symbol_selection = True, threshold = 0.25)
-    save_data('../Datasets/POSTagging/GUM_augemented/train_GUM_X_hashtag_random.pkl', augmented_data)
+    augmented_data = inorm_sym(train_gum, twitter_symbols, random_placement = False, random_symbol_selection = True, threshold = 0.25)
+    augmented_data = do_ilexnorm(augmented_data, threshold = 0.8)
+    augmented_data = inorm_propn(augmented_data, replace_user = True, convert_hashtag = True, multiplier = 2)
+    #augmented_data = inorm_X(augmented_data, add_user = True, add_url = True, add_hashtag = True, hashtag_random_placement= False,  multiplier = 1)
+    save_data('../Datasets/POSTagging/GUM_augemented/train_GUM_sym_iln_propn.pkl', augmented_data)

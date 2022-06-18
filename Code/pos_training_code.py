@@ -12,7 +12,7 @@ from labels_to_ids import tweebank_labels_to_ids
 import time
 import os
 from useful_functions import load_data, save_data
-
+os.environ["CUDA_VISIBLE_DEVICES"]="100"
 
 def train(epoch, training_loader, model, optimizer, device, grad_step = 1, max_grad_norm = 10):
     tr_loss, tr_accuracy = 0, 0
