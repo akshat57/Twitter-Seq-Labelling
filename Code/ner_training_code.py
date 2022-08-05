@@ -202,13 +202,13 @@ def main(n_epochs, model_name, train_dataset_location, model_save_flag, model_sa
         print(f"Training epoch: {epoch + 1}")
 
         #train model
-        model = train(epoch, train_loader, model, optimizer, device, train_labels, grad_step)
+        model = train(epoch, train_loader_tb, model, optimizer, device, train_labels, grad_step)
         
         #testing and logging
-        labels_dev, predictions_dev, dev_accuracy = testing(model, dev_loader, dev_labels, device)
+        labels_dev, predictions_dev, dev_accuracy = testing(model, dev_loader_tb, dev_labels, device)
         print('DEV ACC:', dev_accuracy)
         
-        labels_test, predictions_test, test_accuracy = testing(model, test_loader, test_labels, device)
+        labels_test, predictions_test, test_accuracy = testing(model, test_loader_tb, test_labels, device)
         print('TEST ACC:', test_accuracy)
         
         labels_test_tb, predictions_test_tb, test_accuracy_tb = testing(model, test_loader_tb, test_labels, device)
@@ -276,7 +276,6 @@ if __name__ == '__main__':
             #model saving parameters
             model_save_flag = True
             model_load_flag = False
-            model_save_location = '../../saved_models/' + model_name.replace('/', '-') + '_' + dataset
             model_load_location = None
     
             #logfile
@@ -298,6 +297,7 @@ if __name__ == '__main__':
 
             all_dev_acc, all_test_acc, all_test_tb_acc, all_best_epoch, all_best_tb_epoch = [], [], [], [], []
             for i in range(n_iterations):
+                model_save_location = '../../saved_models/' + model_name.replace('/', '-') + '_' + dataset + '_niter_' + str(i) 
                 print(model_name, dataset, 'ITERATION:', i )
 
                 f = open(in_train_logfile, 'a')
