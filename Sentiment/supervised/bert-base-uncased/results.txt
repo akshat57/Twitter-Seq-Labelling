@@ -1,0 +1,10 @@
+==================================================
+MODEL NAME : bert-base-uncased
+==================================================
+ITERAION : 0
+BEST DEV ACC : 0.90777
+BEST TEST ACC : 0.91697
+BEST EPOCH : 2
+BEST EVALUATE ACC : 0.91697
+BEST EVALUATE EPOCH : 2
+------------------------------

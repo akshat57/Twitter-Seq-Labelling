@@ -1,0 +1,46 @@
+==================================================
+MODEL NAME : cardiffnlp-twitter-roberta-base-sep2022
+==================================================
+ITERAION : 0
+BEST DEV ACC : 0.89397
+BEST TEST ACC : 0.94289
+BEST EPOCH : 4
+BEST EVALUATE ACC : 0.89397
+BEST EVALUATE EPOCH : 4
+------------------------------
+ITERAION : 1
+BEST DEV ACC : 0.9031
+BEST TEST ACC : 0.94673
+BEST EPOCH : 3
+BEST EVALUATE ACC : 0.9031
+BEST EVALUATE EPOCH : 3
+------------------------------
+ITERAION : 2
+BEST DEV ACC : 0.90484
+BEST TEST ACC : 0.94454
+BEST EPOCH : 6
+BEST EVALUATE ACC : 0.90484
+BEST EVALUATE EPOCH : 6
+------------------------------
+ITERAION : 3
+BEST DEV ACC : 0.86876
+BEST TEST ACC : 0.94069
+BEST EPOCH : 2
+BEST EVALUATE ACC : 0.86876
+BEST EVALUATE EPOCH : 2
+------------------------------
+ITERAION : 4
+BEST DEV ACC : 0.90531
+BEST TEST ACC : 0.94893
+BEST EPOCH : 9
+BEST EVALUATE ACC : 0.90531
+BEST EVALUATE EPOCH : 9
+------------------------------
+
+FINAL RESULTS : 
+MEAN DEV ACC : 93.165|STD DEV ACC : 0.172
+MEAN TEST ACC : 94.476|STD TEST ACC : 0.288
+MEAN BEST EPOCH : 4.8
+MEAN EVALUATE ACC : 89.519|STD EVALUATE ACC : 1.384
+MEAN BEST TBEPOCH : 4.8
+------------------------------

@@ -1,0 +1,1517 @@
+==================================================
+MODEL NAME : roberta-base
+==================================================
+ITERAION : 0
+
+EPOCH: 0
+
+TESTING IN DOMAIN:
+
+              precision    recall  f1-score   support
+
+           0    0.96987   0.83484   0.89731      3972
+           1    0.77596   0.95663   0.85687      2375
+
+    accuracy                        0.88042      6347
+   macro avg    0.87292   0.89574   0.87709      6347
+weighted avg    0.89731   0.88042   0.88218      6347
+
+
+EVALUATING OOD:
+
+              precision    recall  f1-score   support
+
+           0    0.96987   0.83484   0.89731      3972
+           1    0.77596   0.95663   0.85687      2375
+
+    accuracy                        0.88042      6347
+   macro avg    0.87292   0.89574   0.87709      6347
+weighted avg    0.89731   0.88042   0.88218      6347
+
+DEV ACC : 0.86919
+TEST ACC : 0.88042
+EVALUATE TEST ACC : 0.88042
+BEST EPOCH : 0
+BEST ACCURACY --> DEV:0.86919, TEST:0.88042
+BEST EVALUATE TEST ACC : 0.88042
+--------------------------------------------------------------------------------
+EPOCH: 1
+
+TESTING IN DOMAIN:
+
+              precision    recall  f1-score   support
+
+           0    0.98618   0.71878   0.83151      3972
+           1    0.67642   0.98316   0.80144      2375
+
+    accuracy                        0.81771      6347
+   macro avg    0.83130   0.85097   0.81648      6347
+weighted avg    0.87027   0.81771   0.82026      6347
+
+
+EVALUATING OOD:
+
+              precision    recall  f1-score   support
+
+           0    0.98618   0.71878   0.83151      3972
+           1    0.67642   0.98316   0.80144      2375
+
+    accuracy                        0.81771      6347
+   macro avg    0.83130   0.85097   0.81648      6347
+weighted avg    0.87027   0.81771   0.82026      6347
+
+DEV ACC : 0.85753
+TEST ACC : 0.81771
+EVALUATE TEST ACC : 0.81771
+BEST EPOCH : 0
+BEST ACCURACY --> DEV:0.86919, TEST:0.88042
+BEST EVALUATE TEST ACC : 0.88042
+--------------------------------------------------------------------------------
+EPOCH: 2
+
+TESTING IN DOMAIN:
+
+              precision    recall  f1-score   support
+
+           0    0.99023   0.71450   0.83007      3972
+           1    0.67423   0.98821   0.80157      2375
+
+    accuracy                        0.81692      6347
+   macro avg    0.83223   0.85136   0.81582      6347
+weighted avg    0.87199   0.81692   0.81940      6347
+
+
+EVALUATING OOD:
+
+              precision    recall  f1-score   support
+
+           0    0.99023   0.71450   0.83007      3972
+           1    0.67423   0.98821   0.80157      2375
+
+    accuracy                        0.81692      6347
+   macro avg    0.83223   0.85136   0.81582      6347
+weighted avg    0.87199   0.81692   0.81940      6347
+
+DEV ACC : 0.85258
+TEST ACC : 0.81692
+EVALUATE TEST ACC : 0.81692
+BEST EPOCH : 0
+BEST ACCURACY --> DEV:0.86919, TEST:0.88042
+BEST EVALUATE TEST ACC : 0.88042
+--------------------------------------------------------------------------------
+EPOCH: 3
+
+TESTING IN DOMAIN:
+
+              precision    recall  f1-score   support
+
+           0    0.97138   0.87160   0.91879      3972
+           1    0.81674   0.95705   0.88135      2375
+
+    accuracy                        0.90358      6347
+   macro avg    0.89406   0.91433   0.90007      6347
+weighted avg    0.91352   0.90358   0.90478      6347
+
+
+EVALUATING OOD:
+
+              precision    recall  f1-score   support
+
+           0    0.97138   0.87160   0.91879      3972
+           1    0.81674   0.95705   0.88135      2375
+
+    accuracy                        0.90358      6347
+   macro avg    0.89406   0.91433   0.90007      6347
+weighted avg    0.91352   0.90358   0.90478      6347
+
+DEV ACC : 0.91798
+TEST ACC : 0.90358
+EVALUATE TEST ACC : 0.90358
+BEST EPOCH : 3
+BEST ACCURACY --> DEV:0.91798, TEST:0.90358
+BEST EVALUATE TEST ACC : 0.90358
+--------------------------------------------------------------------------------
+EPOCH: 4
+
+TESTING IN DOMAIN:
+
+              precision    recall  f1-score   support
+
+           0    0.96173   0.89199   0.92555      3972
+           1    0.83890   0.94063   0.88686      2375
+
+    accuracy                        0.91019      6347
+   macro avg    0.90031   0.91631   0.90620      6347
+weighted avg    0.91577   0.91019   0.91107      6347
+
+
+EVALUATING OOD:
+
+              precision    recall  f1-score   support
+
+           0    0.96173   0.89199   0.92555      3972
+           1    0.83890   0.94063   0.88686      2375
+
+    accuracy                        0.91019      6347
+   macro avg    0.90031   0.91631   0.90620      6347
+weighted avg    0.91577   0.91019   0.91107      6347
+
+DEV ACC : 0.91885
+TEST ACC : 0.91019
+EVALUATE TEST ACC : 0.91019
+BEST EPOCH : 4
+BEST ACCURACY --> DEV:0.91885, TEST:0.91019
+BEST EVALUATE TEST ACC : 0.91019
+--------------------------------------------------------------------------------
+EPOCH: 5
+
+TESTING IN DOMAIN:
+
+              precision    recall  f1-score   support
+
+           0    0.97496   0.86254   0.91531      3972
+           1    0.80727   0.96295   0.87826      2375
+
+    accuracy                        0.90011      6347
+   macro avg    0.89111   0.91274   0.89679      6347
+weighted avg    0.91221   0.90011   0.90145      6347
+
+
+EVALUATING OOD:
+
+              precision    recall  f1-score   support
+
+           0    0.97496   0.86254   0.91531      3972
+           1    0.80727   0.96295   0.87826      2375
+
+    accuracy                        0.90011      6347
+   macro avg    0.89111   0.91274   0.89679      6347
+weighted avg    0.91221   0.90011   0.90145      6347
+
+DEV ACC : 0.90739
+TEST ACC : 0.90011
+EVALUATE TEST ACC : 0.90011
+BEST EPOCH : 4
+BEST ACCURACY --> DEV:0.91885, TEST:0.91019
+BEST EVALUATE TEST ACC : 0.91019
+--------------------------------------------------------------------------------
+EPOCH: 6
+
+TESTING IN DOMAIN:
+
+              precision    recall  f1-score   support
+
+           0    0.95822   0.90660   0.93169      3972
+           1    0.85670   0.93389   0.89363      2375
+
+    accuracy                        0.91681      6347
+   macro avg    0.90746   0.92025   0.91266      6347
+weighted avg    0.92023   0.91681   0.91745      6347
+
+
+EVALUATING OOD:
+
+              precision    recall  f1-score   support
+
+           0    0.95822   0.90660   0.93169      3972
+           1    0.85670   0.93389   0.89363      2375
+
+    accuracy                        0.91681      6347
+   macro avg    0.90746   0.92025   0.91266      6347
+weighted avg    0.92023   0.91681   0.91745      6347
+
+DEV ACC : 0.9206
+TEST ACC : 0.91681
+EVALUATE TEST ACC : 0.91681
+BEST EPOCH : 6
+BEST ACCURACY --> DEV:0.9206, TEST:0.91681
+BEST EVALUATE TEST ACC : 0.91681
+--------------------------------------------------------------------------------
+EPOCH: 7
+
+TESTING IN DOMAIN:
+
+              precision    recall  f1-score   support
+
+           0    0.96246   0.89728   0.92873      3972
+           1    0.84569   0.94147   0.89101      2375
+
+    accuracy                        0.91382      6347
+   macro avg    0.90408   0.91938   0.90987      6347
+weighted avg    0.91877   0.91382   0.91462      6347
+
+
+EVALUATING OOD:
+
+              precision    recall  f1-score   support
+
+           0    0.96246   0.89728   0.92873      3972
+           1    0.84569   0.94147   0.89101      2375
+
+    accuracy                        0.91382      6347
+   macro avg    0.90408   0.91938   0.90987      6347
+weighted avg    0.91877   0.91382   0.91462      6347
+
+DEV ACC : 0.91147
+TEST ACC : 0.91382
+EVALUATE TEST ACC : 0.91382
+BEST EPOCH : 6
+BEST ACCURACY --> DEV:0.9206, TEST:0.91681
+BEST EVALUATE TEST ACC : 0.91681
+--------------------------------------------------------------------------------
+EPOCH: 8
+
+TESTING IN DOMAIN:
+
+              precision    recall  f1-score   support
+
+           0    0.95505   0.91465   0.93441      3972
+           1    0.86669   0.92800   0.89630      2375
+
+    accuracy                        0.91965      6347
+   macro avg    0.91087   0.92133   0.91536      6347
+weighted avg    0.92199   0.91965   0.92015      6347
+
+
+EVALUATING OOD:
+
+              precision    recall  f1-score   support
+
+           0    0.95505   0.91465   0.93441      3972
+           1    0.86669   0.92800   0.89630      2375
+
+    accuracy                        0.91965      6347
+   macro avg    0.91087   0.92133   0.91536      6347
+weighted avg    0.92199   0.91965   0.92015      6347
+
+DEV ACC : 0.92391
+TEST ACC : 0.91965
+EVALUATE TEST ACC : 0.91965
+BEST EPOCH : 8
+BEST ACCURACY --> DEV:0.92391, TEST:0.91965
+BEST EVALUATE TEST ACC : 0.91965
+--------------------------------------------------------------------------------
+EPOCH: 9
+
+TESTING IN DOMAIN:
+
+              precision    recall  f1-score   support
+
+           0    0.95781   0.89728   0.92656      3972
+           1    0.84463   0.93389   0.88702      2375
+
+    accuracy                        0.91098      6347
+   macro avg    0.90122   0.91559   0.90679      6347
+weighted avg    0.91546   0.91098   0.91176      6347
+
+
+EVALUATING OOD:
+
+              precision    recall  f1-score   support
+
+           0    0.95781   0.89728   0.92656      3972
+           1    0.84463   0.93389   0.88702      2375
+
+    accuracy                        0.91098      6347
+   macro avg    0.90122   0.91559   0.90679      6347
+weighted avg    0.91546   0.91098   0.91176      6347
+
+DEV ACC : 0.9103
+TEST ACC : 0.91098
+EVALUATE TEST ACC : 0.91098
+BEST EPOCH : 8
+BEST ACCURACY --> DEV:0.92391, TEST:0.91965
+BEST EVALUATE TEST ACC : 0.91965
+--------------------------------------------------------------------------------
+ITERAION : 1
+
+EPOCH: 0
+
+TESTING IN DOMAIN:
+
+              precision    recall  f1-score   support
+
+           0    0.91813   0.94587   0.93180      3972
+           1    0.90466   0.85895   0.88121      2375
+
+    accuracy                        0.91334      6347
+   macro avg    0.91139   0.90241   0.90650      6347
+weighted avg    0.91309   0.91334   0.91287      6347
+
+
+EVALUATING OOD:
+
+              precision    recall  f1-score   support
+
+           0    0.91813   0.94587   0.93180      3972
+           1    0.90466   0.85895   0.88121      2375
+
+    accuracy                        0.91334      6347
+   macro avg    0.91139   0.90241   0.90650      6347
+weighted avg    0.91309   0.91334   0.91287      6347
+
+DEV ACC : 0.91088
+TEST ACC : 0.91334
+EVALUATE TEST ACC : 0.91334
+BEST EPOCH : 0
+BEST ACCURACY --> DEV:0.91088, TEST:0.91334
+BEST EVALUATE TEST ACC : 0.91334
+--------------------------------------------------------------------------------
+EPOCH: 1
+
+TESTING IN DOMAIN:
+
+              precision    recall  f1-score   support
+
+           0    0.95984   0.90257   0.93032      3972
+           1    0.85184   0.93684   0.89232      2375
+
+    accuracy                        0.91539      6347
+   macro avg    0.90584   0.91971   0.91132      6347
+weighted avg    0.91943   0.91539   0.91610      6347
+
+
+EVALUATING OOD:
+
+              precision    recall  f1-score   support
+
+           0    0.95984   0.90257   0.93032      3972
+           1    0.85184   0.93684   0.89232      2375
+
+    accuracy                        0.91539      6347
+   macro avg    0.90584   0.91971   0.91132      6347
+weighted avg    0.91943   0.91539   0.91610      6347
+
+DEV ACC : 0.91778
+TEST ACC : 0.91539
+EVALUATE TEST ACC : 0.91539
+BEST EPOCH : 1
+BEST ACCURACY --> DEV:0.91778, TEST:0.91539
+BEST EVALUATE TEST ACC : 0.91539
+--------------------------------------------------------------------------------
+EPOCH: 2
+
+TESTING IN DOMAIN:
+
+              precision    recall  f1-score   support
+
+           0    0.95767   0.91138   0.93395      3972
+           1    0.86287   0.93263   0.89640      2375
+
+    accuracy                        0.91933      6347
+   macro avg    0.91027   0.92201   0.91518      6347
+weighted avg    0.92220   0.91933   0.91990      6347
+
+
+EVALUATING OOD:
+
+              precision    recall  f1-score   support
+
+           0    0.95767   0.91138   0.93395      3972
+           1    0.86287   0.93263   0.89640      2375
+
+    accuracy                        0.91933      6347
+   macro avg    0.91027   0.92201   0.91518      6347
+weighted avg    0.92220   0.91933   0.91990      6347
+
+DEV ACC : 0.92653
+TEST ACC : 0.91933
+EVALUATE TEST ACC : 0.91933
+BEST EPOCH : 2
+BEST ACCURACY --> DEV:0.92653, TEST:0.91933
+BEST EVALUATE TEST ACC : 0.91933
+--------------------------------------------------------------------------------
+EPOCH: 3
+
+TESTING IN DOMAIN:
+
+              precision    recall  f1-score   support
+
+           0    0.94229   0.93731   0.93980      3972
+           1    0.89608   0.90400   0.90002      2375
+
+    accuracy                        0.92485      6347
+   macro avg    0.91918   0.92066   0.91991      6347
+weighted avg    0.92500   0.92485   0.92491      6347
+
+
+EVALUATING OOD:
+
+              precision    recall  f1-score   support
+
+           0    0.94229   0.93731   0.93980      3972
+           1    0.89608   0.90400   0.90002      2375
+
+    accuracy                        0.92485      6347
+   macro avg    0.91918   0.92066   0.91991      6347
+weighted avg    0.92500   0.92485   0.92491      6347
+
+DEV ACC : 0.92488
+TEST ACC : 0.92485
+EVALUATE TEST ACC : 0.92485
+BEST EPOCH : 2
+BEST ACCURACY --> DEV:0.92653, TEST:0.91933
+BEST EVALUATE TEST ACC : 0.91933
+--------------------------------------------------------------------------------
+EPOCH: 4
+
+TESTING IN DOMAIN:
+
+              precision    recall  f1-score   support
+
+           0    0.95833   0.89753   0.92694      3972
+           1    0.84507   0.93474   0.88764      2375
+
+    accuracy                        0.91145      6347
+   macro avg    0.90170   0.91613   0.90729      6347
+weighted avg    0.91595   0.91145   0.91223      6347
+
+
+EVALUATING OOD:
+
+              precision    recall  f1-score   support
+
+           0    0.95833   0.89753   0.92694      3972
+           1    0.84507   0.93474   0.88764      2375
+
+    accuracy                        0.91145      6347
+   macro avg    0.90170   0.91613   0.90729      6347
+weighted avg    0.91595   0.91145   0.91223      6347
+
+DEV ACC : 0.92167
+TEST ACC : 0.91145
+EVALUATE TEST ACC : 0.91145
+BEST EPOCH : 2
+BEST ACCURACY --> DEV:0.92653, TEST:0.91933
+BEST EVALUATE TEST ACC : 0.91933
+--------------------------------------------------------------------------------
+EPOCH: 5
+
+TESTING IN DOMAIN:
+
+              precision    recall  f1-score   support
+
+           0    0.95342   0.91717   0.93494      3972
+           1    0.86975   0.92505   0.89655      2375
+
+    accuracy                        0.92012      6347
+   macro avg    0.91158   0.92111   0.91575      6347
+weighted avg    0.92211   0.92012   0.92058      6347
+
+
+EVALUATING OOD:
+
+              precision    recall  f1-score   support
+
+           0    0.95342   0.91717   0.93494      3972
+           1    0.86975   0.92505   0.89655      2375
+
+    accuracy                        0.92012      6347
+   macro avg    0.91158   0.92111   0.91575      6347
+weighted avg    0.92211   0.92012   0.92058      6347
+
+DEV ACC : 0.92566
+TEST ACC : 0.92012
+EVALUATE TEST ACC : 0.92012
+BEST EPOCH : 2
+BEST ACCURACY --> DEV:0.92653, TEST:0.91933
+BEST EVALUATE TEST ACC : 0.91933
+--------------------------------------------------------------------------------
+EPOCH: 6
+
+TESTING IN DOMAIN:
+
+              precision    recall  f1-score   support
+
+           0    0.96486   0.87790   0.91933      3972
+           1    0.82254   0.94653   0.88019      2375
+
+    accuracy                        0.90358      6347
+   macro avg    0.89370   0.91221   0.89976      6347
+weighted avg    0.91160   0.90358   0.90468      6347
+
+
+EVALUATING OOD:
+
+              precision    recall  f1-score   support
+
+           0    0.96486   0.87790   0.91933      3972
+           1    0.82254   0.94653   0.88019      2375
+
+    accuracy                        0.90358      6347
+   macro avg    0.89370   0.91221   0.89976      6347
+weighted avg    0.91160   0.90358   0.90468      6347
+
+DEV ACC : 0.91749
+TEST ACC : 0.90358
+EVALUATE TEST ACC : 0.90358
+BEST EPOCH : 2
+BEST ACCURACY --> DEV:0.92653, TEST:0.91933
+BEST EVALUATE TEST ACC : 0.91933
+--------------------------------------------------------------------------------
+EPOCH: 7
+
+TESTING IN DOMAIN:
+
+              precision    recall  f1-score   support
+
+           0    0.96138   0.90257   0.93105      3972
+           1    0.85218   0.93937   0.89365      2375
+
+    accuracy                        0.91634      6347
+   macro avg    0.90678   0.92097   0.91235      6347
+weighted avg    0.92052   0.91634   0.91705      6347
+
+
+EVALUATING OOD:
+
+              precision    recall  f1-score   support
+
+           0    0.96138   0.90257   0.93105      3972
+           1    0.85218   0.93937   0.89365      2375
+
+    accuracy                        0.91634      6347
+   macro avg    0.90678   0.92097   0.91235      6347
+weighted avg    0.92052   0.91634   0.91705      6347
+
+DEV ACC : 0.92527
+TEST ACC : 0.91634
+EVALUATE TEST ACC : 0.91634
+BEST EPOCH : 2
+BEST ACCURACY --> DEV:0.92653, TEST:0.91933
+BEST EVALUATE TEST ACC : 0.91933
+--------------------------------------------------------------------------------
+EPOCH: 8
+
+TESTING IN DOMAIN:
+
+              precision    recall  f1-score   support
+
+           0    0.96472   0.86052   0.90965      3972
+           1    0.80243   0.94737   0.86889      2375
+
+    accuracy                        0.89302      6347
+   macro avg    0.88357   0.90395   0.88927      6347
+weighted avg    0.90399   0.89302   0.89440      6347
+
+
+EVALUATING OOD:
+
+              precision    recall  f1-score   support
+
+           0    0.96472   0.86052   0.90965      3972
+           1    0.80243   0.94737   0.86889      2375
+
+    accuracy                        0.89302      6347
+   macro avg    0.88357   0.90395   0.88927      6347
+weighted avg    0.90399   0.89302   0.89440      6347
+
+DEV ACC : 0.90709
+TEST ACC : 0.89302
+EVALUATE TEST ACC : 0.89302
+BEST EPOCH : 2
+BEST ACCURACY --> DEV:0.92653, TEST:0.91933
+BEST EVALUATE TEST ACC : 0.91933
+--------------------------------------------------------------------------------
+EPOCH: 9
+
+TESTING IN DOMAIN:
+
+              precision    recall  f1-score   support
+
+           0    0.95758   0.91490   0.93575      3972
+           1    0.86755   0.93221   0.89872      2375
+
+    accuracy                        0.92138      6347
+   macro avg    0.91257   0.92356   0.91724      6347
+weighted avg    0.92389   0.92138   0.92190      6347
+
+
+EVALUATING OOD:
+
+              precision    recall  f1-score   support
+
+           0    0.95758   0.91490   0.93575      3972
+           1    0.86755   0.93221   0.89872      2375
+
+    accuracy                        0.92138      6347
+   macro avg    0.91257   0.92356   0.91724      6347
+weighted avg    0.92389   0.92138   0.92190      6347
+
+DEV ACC : 0.91808
+TEST ACC : 0.92138
+EVALUATE TEST ACC : 0.92138
+BEST EPOCH : 2
+BEST ACCURACY --> DEV:0.92653, TEST:0.91933
+BEST EVALUATE TEST ACC : 0.91933
+--------------------------------------------------------------------------------
+ITERAION : 2
+
+EPOCH: 0
+
+TESTING IN DOMAIN:
+
+              precision    recall  f1-score   support
+
+           0    0.97219   0.83610   0.89903      3972
+           1    0.77789   0.96000   0.85940      2375
+
+    accuracy                        0.88246      6347
+   macro avg    0.87504   0.89805   0.87921      6347
+weighted avg    0.89948   0.88246   0.88420      6347
+
+
+EVALUATING OOD:
+
+              precision    recall  f1-score   support
+
+           0    0.97219   0.83610   0.89903      3972
+           1    0.77789   0.96000   0.85940      2375
+
+    accuracy                        0.88246      6347
+   macro avg    0.87504   0.89805   0.87921      6347
+weighted avg    0.89948   0.88246   0.88420      6347
+
+DEV ACC : 0.90204
+TEST ACC : 0.88246
+EVALUATE TEST ACC : 0.88246
+BEST EPOCH : 0
+BEST ACCURACY --> DEV:0.90204, TEST:0.88246
+BEST EVALUATE TEST ACC : 0.88246
+--------------------------------------------------------------------------------
+EPOCH: 1
+
+TESTING IN DOMAIN:
+
+              precision    recall  f1-score   support
+
+           0    0.95419   0.92296   0.93832      3972
+           1    0.87784   0.92589   0.90123      2375
+
+    accuracy                        0.92406      6347
+   macro avg    0.91602   0.92443   0.91977      6347
+weighted avg    0.92562   0.92406   0.92444      6347
+
+
+EVALUATING OOD:
+
+              precision    recall  f1-score   support
+
+           0    0.95419   0.92296   0.93832      3972
+           1    0.87784   0.92589   0.90123      2375
+
+    accuracy                        0.92406      6347
+   macro avg    0.91602   0.92443   0.91977      6347
+weighted avg    0.92562   0.92406   0.92444      6347
+
+DEV ACC : 0.93052
+TEST ACC : 0.92406
+EVALUATE TEST ACC : 0.92406
+BEST EPOCH : 1
+BEST ACCURACY --> DEV:0.93052, TEST:0.92406
+BEST EVALUATE TEST ACC : 0.92406
+--------------------------------------------------------------------------------
+EPOCH: 2
+
+TESTING IN DOMAIN:
+
+              precision    recall  f1-score   support
+
+           0    0.97538   0.83787   0.90141      3972
+           1    0.78058   0.96463   0.86290      2375
+
+    accuracy                        0.88530      6347
+   macro avg    0.87798   0.90125   0.88215      6347
+weighted avg    0.90249   0.88530   0.88700      6347
+
+
+EVALUATING OOD:
+
+              precision    recall  f1-score   support
+
+           0    0.97538   0.83787   0.90141      3972
+           1    0.78058   0.96463   0.86290      2375
+
+    accuracy                        0.88530      6347
+   macro avg    0.87798   0.90125   0.88215      6347
+weighted avg    0.90249   0.88530   0.88700      6347
+
+DEV ACC : 0.90593
+TEST ACC : 0.8853
+EVALUATE TEST ACC : 0.8853
+BEST EPOCH : 1
+BEST ACCURACY --> DEV:0.93052, TEST:0.92406
+BEST EVALUATE TEST ACC : 0.92406
+--------------------------------------------------------------------------------
+EPOCH: 3
+
+TESTING IN DOMAIN:
+
+              precision    recall  f1-score   support
+
+           0    0.97082   0.87941   0.92285      3972
+           1    0.82575   0.95579   0.88603      2375
+
+    accuracy                        0.90799      6347
+   macro avg    0.89829   0.91760   0.90444      6347
+weighted avg    0.91654   0.90799   0.90907      6347
+
+
+EVALUATING OOD:
+
+              precision    recall  f1-score   support
+
+           0    0.97082   0.87941   0.92285      3972
+           1    0.82575   0.95579   0.88603      2375
+
+    accuracy                        0.90799      6347
+   macro avg    0.89829   0.91760   0.90444      6347
+weighted avg    0.91654   0.90799   0.90907      6347
+
+DEV ACC : 0.91905
+TEST ACC : 0.90799
+EVALUATE TEST ACC : 0.90799
+BEST EPOCH : 1
+BEST ACCURACY --> DEV:0.93052, TEST:0.92406
+BEST EVALUATE TEST ACC : 0.92406
+--------------------------------------------------------------------------------
+EPOCH: 4
+
+TESTING IN DOMAIN:
+
+              precision    recall  f1-score   support
+
+           0    0.95817   0.89955   0.92793      3972
+           1    0.84759   0.93432   0.88884      2375
+
+    accuracy                        0.91256      6347
+   macro avg    0.90288   0.91693   0.90839      6347
+weighted avg    0.91679   0.91256   0.91331      6347
+
+
+EVALUATING OOD:
+
+              precision    recall  f1-score   support
+
+           0    0.95817   0.89955   0.92793      3972
+           1    0.84759   0.93432   0.88884      2375
+
+    accuracy                        0.91256      6347
+   macro avg    0.90288   0.91693   0.90839      6347
+weighted avg    0.91679   0.91256   0.91331      6347
+
+DEV ACC : 0.91701
+TEST ACC : 0.91256
+EVALUATE TEST ACC : 0.91256
+BEST EPOCH : 1
+BEST ACCURACY --> DEV:0.93052, TEST:0.92406
+BEST EVALUATE TEST ACC : 0.92406
+--------------------------------------------------------------------------------
+EPOCH: 5
+
+TESTING IN DOMAIN:
+
+              precision    recall  f1-score   support
+
+           0    0.96024   0.89980   0.92904      3972
+           1    0.84838   0.93768   0.89080      2375
+
+    accuracy                        0.91398      6347
+   macro avg    0.90431   0.91874   0.90992      6347
+weighted avg    0.91838   0.91398   0.91473      6347
+
+
+EVALUATING OOD:
+
+              precision    recall  f1-score   support
+
+           0    0.96024   0.89980   0.92904      3972
+           1    0.84838   0.93768   0.89080      2375
+
+    accuracy                        0.91398      6347
+   macro avg    0.90431   0.91874   0.90992      6347
+weighted avg    0.91838   0.91398   0.91473      6347
+
+DEV ACC : 0.92468
+TEST ACC : 0.91398
+EVALUATE TEST ACC : 0.91398
+BEST EPOCH : 1
+BEST ACCURACY --> DEV:0.93052, TEST:0.92406
+BEST EVALUATE TEST ACC : 0.92406
+--------------------------------------------------------------------------------
+EPOCH: 6
+
+TESTING IN DOMAIN:
+
+              precision    recall  f1-score   support
+
+           0    0.98099   0.79255   0.87676      3972
+           1    0.73741   0.97432   0.83947      2375
+
+    accuracy                        0.86056      6347
+   macro avg    0.85920   0.88343   0.85811      6347
+weighted avg    0.88985   0.86056   0.86281      6347
+
+
+EVALUATING OOD:
+
+              precision    recall  f1-score   support
+
+           0    0.98099   0.79255   0.87676      3972
+           1    0.73741   0.97432   0.83947      2375
+
+    accuracy                        0.86056      6347
+   macro avg    0.85920   0.88343   0.85811      6347
+weighted avg    0.88985   0.86056   0.86281      6347
+
+DEV ACC : 0.88999
+TEST ACC : 0.86056
+EVALUATE TEST ACC : 0.86056
+BEST EPOCH : 1
+BEST ACCURACY --> DEV:0.93052, TEST:0.92406
+BEST EVALUATE TEST ACC : 0.92406
+--------------------------------------------------------------------------------
+EPOCH: 7
+
+TESTING IN DOMAIN:
+
+              precision    recall  f1-score   support
+
+           0    0.94610   0.94134   0.94372      3972
+           1    0.90271   0.91032   0.90650      2375
+
+    accuracy                        0.92973      6347
+   macro avg    0.92441   0.92583   0.92511      6347
+weighted avg    0.92987   0.92973   0.92979      6347
+
+
+EVALUATING OOD:
+
+              precision    recall  f1-score   support
+
+           0    0.94610   0.94134   0.94372      3972
+           1    0.90271   0.91032   0.90650      2375
+
+    accuracy                        0.92973      6347
+   macro avg    0.92441   0.92583   0.92511      6347
+weighted avg    0.92987   0.92973   0.92979      6347
+
+DEV ACC : 0.92692
+TEST ACC : 0.92973
+EVALUATE TEST ACC : 0.92973
+BEST EPOCH : 1
+BEST ACCURACY --> DEV:0.93052, TEST:0.92406
+BEST EVALUATE TEST ACC : 0.92406
+--------------------------------------------------------------------------------
+EPOCH: 8
+
+TESTING IN DOMAIN:
+
+              precision    recall  f1-score   support
+
+           0    0.97584   0.84416   0.90524      3972
+           1    0.78736   0.96505   0.86720      2375
+
+    accuracy                        0.88940      6347
+   macro avg    0.88160   0.90461   0.88622      6347
+weighted avg    0.90531   0.88940   0.89100      6347
+
+
+EVALUATING OOD:
+
+              precision    recall  f1-score   support
+
+           0    0.97584   0.84416   0.90524      3972
+           1    0.78736   0.96505   0.86720      2375
+
+    accuracy                        0.88940      6347
+   macro avg    0.88160   0.90461   0.88622      6347
+weighted avg    0.90531   0.88940   0.89100      6347
+
+DEV ACC : 0.90243
+TEST ACC : 0.8894
+EVALUATE TEST ACC : 0.8894
+BEST EPOCH : 1
+BEST ACCURACY --> DEV:0.93052, TEST:0.92406
+BEST EVALUATE TEST ACC : 0.92406
+--------------------------------------------------------------------------------
+EPOCH: 9
+
+TESTING IN DOMAIN:
+
+              precision    recall  f1-score   support
+
+           0    0.97020   0.87714   0.92133      3972
+           1    0.82293   0.95495   0.88404      2375
+
+    accuracy                        0.90625      6347
+   macro avg    0.89657   0.91604   0.90268      6347
+weighted avg    0.91510   0.90625   0.90737      6347
+
+
+EVALUATING OOD:
+
+              precision    recall  f1-score   support
+
+           0    0.97020   0.87714   0.92133      3972
+           1    0.82293   0.95495   0.88404      2375
+
+    accuracy                        0.90625      6347
+   macro avg    0.89657   0.91604   0.90268      6347
+weighted avg    0.91510   0.90625   0.90737      6347
+
+DEV ACC : 0.9137
+TEST ACC : 0.90625
+EVALUATE TEST ACC : 0.90625
+BEST EPOCH : 1
+BEST ACCURACY --> DEV:0.93052, TEST:0.92406
+BEST EVALUATE TEST ACC : 0.92406
+--------------------------------------------------------------------------------
+ITERAION : 3
+
+EPOCH: 0
+
+TESTING IN DOMAIN:
+
+              precision    recall  f1-score   support
+
+           0    0.95760   0.90408   0.93007      3972
+           1    0.85329   0.93305   0.89139      2375
+
+    accuracy                        0.91492      6347
+   macro avg    0.90545   0.91857   0.91073      6347
+weighted avg    0.91857   0.91492   0.91560      6347
+
+
+EVALUATING OOD:
+
+              precision    recall  f1-score   support
+
+           0    0.95760   0.90408   0.93007      3972
+           1    0.85329   0.93305   0.89139      2375
+
+    accuracy                        0.91492      6347
+   macro avg    0.90545   0.91857   0.91073      6347
+weighted avg    0.91857   0.91492   0.91560      6347
+
+DEV ACC : 0.92138
+TEST ACC : 0.91492
+EVALUATE TEST ACC : 0.91492
+BEST EPOCH : 0
+BEST ACCURACY --> DEV:0.92138, TEST:0.91492
+BEST EVALUATE TEST ACC : 0.91492
+--------------------------------------------------------------------------------
+EPOCH: 1
+
+TESTING IN DOMAIN:
+
+              precision    recall  f1-score   support
+
+           0    0.96560   0.89048   0.92652      3972
+           1    0.83793   0.94695   0.88911      2375
+
+    accuracy                        0.91161      6347
+   macro avg    0.90177   0.91872   0.90782      6347
+weighted avg    0.91783   0.91161   0.91252      6347
+
+
+EVALUATING OOD:
+
+              precision    recall  f1-score   support
+
+           0    0.96560   0.89048   0.92652      3972
+           1    0.83793   0.94695   0.88911      2375
+
+    accuracy                        0.91161      6347
+   macro avg    0.90177   0.91872   0.90782      6347
+weighted avg    0.91783   0.91161   0.91252      6347
+
+DEV ACC : 0.9138
+TEST ACC : 0.91161
+EVALUATE TEST ACC : 0.91161
+BEST EPOCH : 0
+BEST ACCURACY --> DEV:0.92138, TEST:0.91492
+BEST EVALUATE TEST ACC : 0.91492
+--------------------------------------------------------------------------------
+EPOCH: 2
+
+TESTING IN DOMAIN:
+
+              precision    recall  f1-score   support
+
+           0    0.97149   0.84945   0.90638      3972
+           1    0.79193   0.95832   0.86721      2375
+
+    accuracy                        0.89018      6347
+   macro avg    0.88171   0.90388   0.88680      6347
+weighted avg    0.90430   0.89018   0.89172      6347
+
+
+EVALUATING OOD:
+
+              precision    recall  f1-score   support
+
+           0    0.97149   0.84945   0.90638      3972
+           1    0.79193   0.95832   0.86721      2375
+
+    accuracy                        0.89018      6347
+   macro avg    0.88171   0.90388   0.88680      6347
+weighted avg    0.90430   0.89018   0.89172      6347
+
+DEV ACC : 0.90457
+TEST ACC : 0.89018
+EVALUATE TEST ACC : 0.89018
+BEST EPOCH : 0
+BEST ACCURACY --> DEV:0.92138, TEST:0.91492
+BEST EVALUATE TEST ACC : 0.91492
+--------------------------------------------------------------------------------
+EPOCH: 3
+
+TESTING IN DOMAIN:
+
+              precision    recall  f1-score   support
+
+           0    0.97122   0.87513   0.92067      3972
+           1    0.82081   0.95663   0.88353      2375
+
+    accuracy                        0.90562      6347
+   macro avg    0.89602   0.91588   0.90210      6347
+weighted avg    0.91494   0.90562   0.90677      6347
+
+
+EVALUATING OOD:
+
+              precision    recall  f1-score   support
+
+           0    0.97122   0.87513   0.92067      3972
+           1    0.82081   0.95663   0.88353      2375
+
+    accuracy                        0.90562      6347
+   macro avg    0.89602   0.91588   0.90210      6347
+weighted avg    0.91494   0.90562   0.90677      6347
+
+DEV ACC : 0.91526
+TEST ACC : 0.90562
+EVALUATE TEST ACC : 0.90562
+BEST EPOCH : 0
+BEST ACCURACY --> DEV:0.92138, TEST:0.91492
+BEST EVALUATE TEST ACC : 0.91492
+--------------------------------------------------------------------------------
+EPOCH: 4
+
+TESTING IN DOMAIN:
+
+              precision    recall  f1-score   support
+
+           0    0.96749   0.88419   0.92397      3972
+           1    0.83070   0.95032   0.88649      2375
+
+    accuracy                        0.90893      6347
+   macro avg    0.89909   0.91725   0.90523      6347
+weighted avg    0.91630   0.90893   0.90994      6347
+
+
+EVALUATING OOD:
+
+              precision    recall  f1-score   support
+
+           0    0.96749   0.88419   0.92397      3972
+           1    0.83070   0.95032   0.88649      2375
+
+    accuracy                        0.90893      6347
+   macro avg    0.89909   0.91725   0.90523      6347
+weighted avg    0.91630   0.90893   0.90994      6347
+
+DEV ACC : 0.91798
+TEST ACC : 0.90893
+EVALUATE TEST ACC : 0.90893
+BEST EPOCH : 0
+BEST ACCURACY --> DEV:0.92138, TEST:0.91492
+BEST EVALUATE TEST ACC : 0.91492
+--------------------------------------------------------------------------------
+EPOCH: 5
+
+TESTING IN DOMAIN:
+
+              precision    recall  f1-score   support
+
+           0    0.94100   0.92346   0.93215      3972
+           1    0.87587   0.90316   0.88930      2375
+
+    accuracy                        0.91587      6347
+   macro avg    0.90843   0.91331   0.91073      6347
+weighted avg    0.91663   0.91587   0.91612      6347
+
+
+EVALUATING OOD:
+
+              precision    recall  f1-score   support
+
+           0    0.94100   0.92346   0.93215      3972
+           1    0.87587   0.90316   0.88930      2375
+
+    accuracy                        0.91587      6347
+   macro avg    0.90843   0.91331   0.91073      6347
+weighted avg    0.91663   0.91587   0.91612      6347
+
+DEV ACC : 0.90943
+TEST ACC : 0.91587
+EVALUATE TEST ACC : 0.91587
+BEST EPOCH : 0
+BEST ACCURACY --> DEV:0.92138, TEST:0.91492
+BEST EVALUATE TEST ACC : 0.91492
+--------------------------------------------------------------------------------
+EPOCH: 6
+
+TESTING IN DOMAIN:
+
+              precision    recall  f1-score   support
+
+           0    0.96640   0.88343   0.92306      3972
+           1    0.82953   0.94863   0.88509      2375
+
+    accuracy                        0.90783      6347
+   macro avg    0.89796   0.91603   0.90407      6347
+weighted avg    0.91518   0.90783   0.90885      6347
+
+
+EVALUATING OOD:
+
+              precision    recall  f1-score   support
+
+           0    0.96640   0.88343   0.92306      3972
+           1    0.82953   0.94863   0.88509      2375
+
+    accuracy                        0.90783      6347
+   macro avg    0.89796   0.91603   0.90407      6347
+weighted avg    0.91518   0.90783   0.90885      6347
+
+DEV ACC : 0.92196
+TEST ACC : 0.90783
+EVALUATE TEST ACC : 0.90783
+BEST EPOCH : 6
+BEST ACCURACY --> DEV:0.92196, TEST:0.90783
+BEST EVALUATE TEST ACC : 0.90783
+--------------------------------------------------------------------------------
+EPOCH: 7
+
+TESTING IN DOMAIN:
+
+              precision    recall  f1-score   support
+
+           0    0.96474   0.89552   0.92884      3972
+           1    0.84398   0.94526   0.89176      2375
+
+    accuracy                        0.91413      6347
+   macro avg    0.90436   0.92039   0.91030      6347
+weighted avg    0.91955   0.91413   0.91497      6347
+
+
+EVALUATING OOD:
+
+              precision    recall  f1-score   support
+
+           0    0.96474   0.89552   0.92884      3972
+           1    0.84398   0.94526   0.89176      2375
+
+    accuracy                        0.91413      6347
+   macro avg    0.90436   0.92039   0.91030      6347
+weighted avg    0.91955   0.91413   0.91497      6347
+
+DEV ACC : 0.92157
+TEST ACC : 0.91413
+EVALUATE TEST ACC : 0.91413
+BEST EPOCH : 6
+BEST ACCURACY --> DEV:0.92196, TEST:0.90783
+BEST EVALUATE TEST ACC : 0.90783
+--------------------------------------------------------------------------------
+EPOCH: 8
+
+TESTING IN DOMAIN:
+
+              precision    recall  f1-score   support
+
+           0    0.97348   0.85952   0.91296      3972
+           1    0.80352   0.96084   0.87517      2375
+
+    accuracy                        0.89743      6347
+   macro avg    0.88850   0.91018   0.89406      6347
+weighted avg    0.90988   0.89743   0.89882      6347
+
+
+EVALUATING OOD:
+
+              precision    recall  f1-score   support
+
+           0    0.97348   0.85952   0.91296      3972
+           1    0.80352   0.96084   0.87517      2375
+
+    accuracy                        0.89743      6347
+   macro avg    0.88850   0.91018   0.89406      6347
+weighted avg    0.90988   0.89743   0.89882      6347
+
+DEV ACC : 0.90486
+TEST ACC : 0.89743
+EVALUATE TEST ACC : 0.89743
+BEST EPOCH : 6
+BEST ACCURACY --> DEV:0.92196, TEST:0.90783
+BEST EVALUATE TEST ACC : 0.90783
+--------------------------------------------------------------------------------
+EPOCH: 9
+
+TESTING IN DOMAIN:
+
+              precision    recall  f1-score   support
+
+           0    0.95972   0.90584   0.93200      3972
+           1    0.85604   0.93642   0.89443      2375
+
+    accuracy                        0.91728      6347
+   macro avg    0.90788   0.92113   0.91322      6347
+weighted avg    0.92093   0.91728   0.91794      6347
+
+
+EVALUATING OOD:
+
+              precision    recall  f1-score   support
+
+           0    0.95972   0.90584   0.93200      3972
+           1    0.85604   0.93642   0.89443      2375
+
+    accuracy                        0.91728      6347
+   macro avg    0.90788   0.92113   0.91322      6347
+weighted avg    0.92093   0.91728   0.91794      6347
+
+DEV ACC : 0.92468
+TEST ACC : 0.91728
+EVALUATE TEST ACC : 0.91728
+BEST EPOCH : 9
+BEST ACCURACY --> DEV:0.92468, TEST:0.91728
+BEST EVALUATE TEST ACC : 0.91728
+--------------------------------------------------------------------------------
+ITERAION : 4
+
+EPOCH: 0
+
+TESTING IN DOMAIN:
+
+              precision    recall  f1-score   support
+
+           0    0.95987   0.88520   0.92102      3972
+           1    0.83010   0.93811   0.88081      2375
+
+    accuracy                        0.90499      6347
+   macro avg    0.89499   0.91165   0.90091      6347
+weighted avg    0.91131   0.90499   0.90597      6347
+
+
+EVALUATING OOD:
+
+              precision    recall  f1-score   support
+
+           0    0.95987   0.88520   0.92102      3972
+           1    0.83010   0.93811   0.88081      2375
+
+    accuracy                        0.90499      6347
+   macro avg    0.89499   0.91165   0.90091      6347
+weighted avg    0.91131   0.90499   0.90597      6347
+
+DEV ACC : 0.90068
+TEST ACC : 0.90499
+EVALUATE TEST ACC : 0.90499
+BEST EPOCH : 0
+BEST ACCURACY --> DEV:0.90068, TEST:0.90499
+BEST EVALUATE TEST ACC : 0.90499
+--------------------------------------------------------------------------------
+EPOCH: 1
+
+TESTING IN DOMAIN:
+
+              precision    recall  f1-score   support
+
+           0    0.95022   0.91314   0.93131      3972
+           1    0.86364   0.92000   0.89093      2375
+
+    accuracy                        0.91571      6347
+   macro avg    0.90693   0.91657   0.91112      6347
+weighted avg    0.91782   0.91571   0.91620      6347
+
+
+EVALUATING OOD:
+
+              precision    recall  f1-score   support
+
+           0    0.95022   0.91314   0.93131      3972
+           1    0.86364   0.92000   0.89093      2375
+
+    accuracy                        0.91571      6347
+   macro avg    0.90693   0.91657   0.91112      6347
+weighted avg    0.91782   0.91571   0.91620      6347
+
+DEV ACC : 0.91195
+TEST ACC : 0.91571
+EVALUATE TEST ACC : 0.91571
+BEST EPOCH : 1
+BEST ACCURACY --> DEV:0.91195, TEST:0.91571
+BEST EVALUATE TEST ACC : 0.91571
+--------------------------------------------------------------------------------
+EPOCH: 2
+
+TESTING IN DOMAIN:
+
+              precision    recall  f1-score   support
+
+           0    0.97668   0.83283   0.89904      3972
+           1    0.77568   0.96674   0.86073      2375
+
+    accuracy                        0.88294      6347
+   macro avg    0.87618   0.89978   0.87988      6347
+weighted avg    0.90146   0.88294   0.88470      6347
+
+
+EVALUATING OOD:
+
+              precision    recall  f1-score   support
+
+           0    0.97668   0.83283   0.89904      3972
+           1    0.77568   0.96674   0.86073      2375
+
+    accuracy                        0.88294      6347
+   macro avg    0.87618   0.89978   0.87988      6347
+weighted avg    0.90146   0.88294   0.88470      6347
+
+DEV ACC : 0.9034
+TEST ACC : 0.88294
+EVALUATE TEST ACC : 0.88294
+BEST EPOCH : 1
+BEST ACCURACY --> DEV:0.91195, TEST:0.91571
+BEST EVALUATE TEST ACC : 0.91571
+--------------------------------------------------------------------------------
+EPOCH: 3
+
+TESTING IN DOMAIN:
+
+              precision    recall  f1-score   support
+
+           0    0.96108   0.90760   0.93358      3972
+           1    0.85863   0.93853   0.89680      2375
+
+    accuracy                        0.91917      6347
+   macro avg    0.90985   0.92306   0.91519      6347
+weighted avg    0.92274   0.91917   0.91981      6347
+
+
+EVALUATING OOD:
+
+              precision    recall  f1-score   support
+
+           0    0.96108   0.90760   0.93358      3972
+           1    0.85863   0.93853   0.89680      2375
+
+    accuracy                        0.91917      6347
+   macro avg    0.90985   0.92306   0.91519      6347
+weighted avg    0.92274   0.91917   0.91981      6347
+
+DEV ACC : 0.91876
+TEST ACC : 0.91917
+EVALUATE TEST ACC : 0.91917
+BEST EPOCH : 3
+BEST ACCURACY --> DEV:0.91876, TEST:0.91917
+BEST EVALUATE TEST ACC : 0.91917
+--------------------------------------------------------------------------------
+EPOCH: 4
+
+TESTING IN DOMAIN:
+
+              precision    recall  f1-score   support
+
+           0    0.95736   0.90433   0.93009      3972
+           1    0.85356   0.93263   0.89135      2375
+
+    accuracy                        0.91492      6347
+   macro avg    0.90546   0.91848   0.91072      6347
+weighted avg    0.91852   0.91492   0.91559      6347
+
+
+EVALUATING OOD:
+
+              precision    recall  f1-score   support
+
+           0    0.95736   0.90433   0.93009      3972
+           1    0.85356   0.93263   0.89135      2375
+
+    accuracy                        0.91492      6347
+   macro avg    0.90546   0.91848   0.91072      6347
+weighted avg    0.91852   0.91492   0.91559      6347
+
+DEV ACC : 0.90457
+TEST ACC : 0.91492
+EVALUATE TEST ACC : 0.91492
+BEST EPOCH : 3
+BEST ACCURACY --> DEV:0.91876, TEST:0.91917
+BEST EVALUATE TEST ACC : 0.91917
+--------------------------------------------------------------------------------
+EPOCH: 5
+
+TESTING IN DOMAIN:
+
+              precision    recall  f1-score   support
+
+           0    0.97476   0.85574   0.91138      3972
+           1    0.79965   0.96295   0.87373      2375
+
+    accuracy                        0.89586      6347
+   macro avg    0.88721   0.90934   0.89256      6347
+weighted avg    0.90924   0.89586   0.89729      6347
+
+
+EVALUATING OOD:
+
+              precision    recall  f1-score   support
+
+           0    0.97476   0.85574   0.91138      3972
+           1    0.79965   0.96295   0.87373      2375
+
+    accuracy                        0.89586      6347
+   macro avg    0.88721   0.90934   0.89256      6347
+weighted avg    0.90924   0.89586   0.89729      6347
+
+DEV ACC : 0.90175
+TEST ACC : 0.89586
+EVALUATE TEST ACC : 0.89586
+BEST EPOCH : 3
+BEST ACCURACY --> DEV:0.91876, TEST:0.91917
+BEST EVALUATE TEST ACC : 0.91917
+--------------------------------------------------------------------------------
+EPOCH: 6
+
+TESTING IN DOMAIN:
+
+              precision    recall  f1-score   support
+
+           0    0.97503   0.80614   0.88258      3972
+           1    0.74861   0.96547   0.84332      2375
+
+    accuracy                        0.86576      6347
+   macro avg    0.86182   0.88581   0.86295      6347
+weighted avg    0.89031   0.86576   0.86789      6347
+
+
+EVALUATING OOD:
+
+              precision    recall  f1-score   support
+
+           0    0.97503   0.80614   0.88258      3972
+           1    0.74861   0.96547   0.84332      2375
+
+    accuracy                        0.86576      6347
+   macro avg    0.86182   0.88581   0.86295      6347
+weighted avg    0.89031   0.86576   0.86789      6347
+
+DEV ACC : 0.88552
+TEST ACC : 0.86576
+EVALUATE TEST ACC : 0.86576
+BEST EPOCH : 3
+BEST ACCURACY --> DEV:0.91876, TEST:0.91917
+BEST EVALUATE TEST ACC : 0.91917
+--------------------------------------------------------------------------------

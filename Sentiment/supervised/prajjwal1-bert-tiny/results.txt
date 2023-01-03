@@ -1,0 +1,46 @@
+==================================================
+MODEL NAME : prajjwal1-bert-tiny
+==================================================
+ITERAION : 0
+BEST DEV ACC : 0.80379
+BEST TEST ACC : 0.77155
+BEST EPOCH : 9
+BEST EVALUATE ACC : 0.77155
+BEST EVALUATE EPOCH : 9
+------------------------------
+ITERAION : 1
+BEST DEV ACC : 0.80389
+BEST TEST ACC : 0.74382
+BEST EPOCH : 8
+BEST EVALUATE ACC : 0.74382
+BEST EVALUATE EPOCH : 8
+------------------------------
+ITERAION : 2
+BEST DEV ACC : 0.80845
+BEST TEST ACC : 0.76934
+BEST EPOCH : 9
+BEST EVALUATE ACC : 0.76934
+BEST EVALUATE EPOCH : 9
+------------------------------
+ITERAION : 3
+BEST DEV ACC : 0.80496
+BEST TEST ACC : 0.77375
+BEST EPOCH : 9
+BEST EVALUATE ACC : 0.77375
+BEST EVALUATE EPOCH : 9
+------------------------------
+ITERAION : 4
+BEST DEV ACC : 0.80087
+BEST TEST ACC : 0.77958
+BEST EPOCH : 9
+BEST EVALUATE ACC : 0.77958
+BEST EVALUATE EPOCH : 9
+------------------------------
+
+FINAL RESULTS : 
+MEAN DEV ACC : 80.439|STD DEV ACC : 0.244
+MEAN TEST ACC : 76.761|STD TEST ACC : 1.237
+MEAN BEST EPOCH : 8.8
+MEAN EVALUATE ACC : 76.761|STD EVALUATE ACC : 1.237
+MEAN BEST TBEPOCH : 8.8
+------------------------------

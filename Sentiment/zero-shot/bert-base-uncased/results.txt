@@ -1,0 +1,46 @@
+==================================================
+MODEL NAME : bert-base-uncased
+==================================================
+ITERAION : 0
+BEST DEV ACC : 0.82637
+BEST TEST ACC : 0.91323
+BEST EPOCH : 5
+BEST EVALUATE ACC : 0.82637
+BEST EVALUATE EPOCH : 5
+------------------------------
+ITERAION : 1
+BEST DEV ACC : 0.8415
+BEST TEST ACC : 0.90939
+BEST EPOCH : 3
+BEST EVALUATE ACC : 0.8415
+BEST EVALUATE EPOCH : 3
+------------------------------
+ITERAION : 2
+BEST DEV ACC : 0.81739
+BEST TEST ACC : 0.90829
+BEST EPOCH : 7
+BEST EVALUATE ACC : 0.81739
+BEST EVALUATE EPOCH : 7
+------------------------------
+ITERAION : 3
+BEST DEV ACC : 0.82417
+BEST TEST ACC : 0.91708
+BEST EPOCH : 9
+BEST EVALUATE ACC : 0.82417
+BEST EVALUATE EPOCH : 9
+------------------------------
+ITERAION : 4
+BEST DEV ACC : 0.84827
+BEST TEST ACC : 0.91433
+BEST EPOCH : 6
+BEST EVALUATE ACC : 0.84827
+BEST EVALUATE EPOCH : 6
+------------------------------
+
+FINAL RESULTS : 
+MEAN DEV ACC : 91.789|STD DEV ACC : 0.352
+MEAN TEST ACC : 91.247|STD TEST ACC : 0.323
+MEAN BEST EPOCH : 6.0
+MEAN EVALUATE ACC : 83.154|STD EVALUATE ACC : 1.149
+MEAN BEST TBEPOCH : 6.0
+------------------------------

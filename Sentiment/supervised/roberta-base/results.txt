@@ -1,0 +1,31 @@
+==================================================
+MODEL NAME : roberta-base
+==================================================
+ITERAION : 0
+BEST DEV ACC : 0.92391
+BEST TEST ACC : 0.91965
+BEST EPOCH : 8
+BEST EVALUATE ACC : 0.91965
+BEST EVALUATE EPOCH : 8
+------------------------------
+ITERAION : 1
+BEST DEV ACC : 0.92653
+BEST TEST ACC : 0.91933
+BEST EPOCH : 2
+BEST EVALUATE ACC : 0.91933
+BEST EVALUATE EPOCH : 2
+------------------------------
+ITERAION : 2
+BEST DEV ACC : 0.93052
+BEST TEST ACC : 0.92406
+BEST EPOCH : 1
+BEST EVALUATE ACC : 0.92406
+BEST EVALUATE EPOCH : 1
+------------------------------
+ITERAION : 3
+BEST DEV ACC : 0.92468
+BEST TEST ACC : 0.91728
+BEST EPOCH : 9
+BEST EVALUATE ACC : 0.91728
+BEST EVALUATE EPOCH : 9
+------------------------------

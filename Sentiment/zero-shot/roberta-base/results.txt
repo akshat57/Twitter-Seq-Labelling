@@ -1,0 +1,46 @@
+==================================================
+MODEL NAME : roberta-base
+==================================================
+ITERAION : 0
+BEST DEV ACC : 0.88861
+BEST TEST ACC : 0.94838
+BEST EPOCH : 4
+BEST EVALUATE ACC : 0.88861
+BEST EVALUATE EPOCH : 4
+------------------------------
+ITERAION : 1
+BEST DEV ACC : 0.86986
+BEST TEST ACC : 0.93904
+BEST EPOCH : 8
+BEST EVALUATE ACC : 0.86986
+BEST EVALUATE EPOCH : 8
+------------------------------
+ITERAION : 2
+BEST DEV ACC : 0.8812
+BEST TEST ACC : 0.94124
+BEST EPOCH : 3
+BEST EVALUATE ACC : 0.8812
+BEST EVALUATE EPOCH : 3
+------------------------------
+ITERAION : 3
+BEST DEV ACC : 0.87348
+BEST TEST ACC : 0.94509
+BEST EPOCH : 7
+BEST EVALUATE ACC : 0.87348
+BEST EVALUATE EPOCH : 7
+------------------------------
+ITERAION : 4
+BEST DEV ACC : 0.876
+BEST TEST ACC : 0.94399
+BEST EPOCH : 9
+BEST EVALUATE ACC : 0.876
+BEST EVALUATE EPOCH : 9
+------------------------------
+
+FINAL RESULTS : 
+MEAN DEV ACC : 93.486|STD DEV ACC : 0.351
+MEAN TEST ACC : 94.355|STD TEST ACC : 0.321
+MEAN BEST EPOCH : 6.2
+MEAN EVALUATE ACC : 87.783|STD EVALUATE ACC : 0.653
+MEAN BEST TBEPOCH : 6.2
+------------------------------

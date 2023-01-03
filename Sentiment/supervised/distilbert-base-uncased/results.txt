@@ -1,0 +1,46 @@
+==================================================
+MODEL NAME : distilbert-base-uncased
+==================================================
+ITERAION : 0
+BEST DEV ACC : 0.90165
+BEST TEST ACC : 0.90941
+BEST EPOCH : 2
+BEST EVALUATE ACC : 0.90941
+BEST EVALUATE EPOCH : 2
+------------------------------
+ITERAION : 1
+BEST DEV ACC : 0.90243
+BEST TEST ACC : 0.91224
+BEST EPOCH : 3
+BEST EVALUATE ACC : 0.91224
+BEST EVALUATE EPOCH : 3
+------------------------------
+ITERAION : 2
+BEST DEV ACC : 0.89786
+BEST TEST ACC : 0.90279
+BEST EPOCH : 5
+BEST EVALUATE ACC : 0.90279
+BEST EVALUATE EPOCH : 5
+------------------------------
+ITERAION : 3
+BEST DEV ACC : 0.8999
+BEST TEST ACC : 0.91681
+BEST EPOCH : 1
+BEST EVALUATE ACC : 0.91681
+BEST EVALUATE EPOCH : 1
+------------------------------
+ITERAION : 4
+BEST DEV ACC : 0.89893
+BEST TEST ACC : 0.89743
+BEST EPOCH : 1
+BEST EVALUATE ACC : 0.89743
+BEST EVALUATE EPOCH : 1
+------------------------------
+
+FINAL RESULTS : 
+MEAN DEV ACC : 90.016|STD DEV ACC : 0.169
+MEAN TEST ACC : 90.774|STD TEST ACC : 0.687
+MEAN BEST EPOCH : 2.4
+MEAN EVALUATE ACC : 90.774|STD EVALUATE ACC : 0.687
+MEAN BEST TBEPOCH : 2.4
+------------------------------

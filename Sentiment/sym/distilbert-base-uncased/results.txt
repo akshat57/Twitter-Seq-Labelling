@@ -1,0 +1,17 @@
+==================================================
+MODEL NAME : distilbert-base-uncased
+==================================================
+ITERAION : 0
+BEST DEV ACC : 0.90482
+BEST TEST ACC : 0.9006
+BEST EPOCH : 2
+BEST EVALUATE ACC : 0.81251
+BEST EVALUATE EPOCH : 2
+------------------------------
+ITERAION : 1
+BEST DEV ACC : 0.90138
+BEST TEST ACC : 0.90225
+BEST EPOCH : 4
+BEST EVALUATE ACC : 0.82181
+BEST EVALUATE EPOCH : 4
+------------------------------
