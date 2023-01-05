@@ -1,0 +1,10 @@
+==================================================
+MODEL NAME : roberta-large
+==================================================
+ITERAION : 0
+BEST DEV ACC : 0.95069
+BEST TEST ACC : 0.95277
+BEST EPOCH : 6
+BEST EVALUATE ACC : 0.88924
+BEST EVALUATE EPOCH : 6
+------------------------------

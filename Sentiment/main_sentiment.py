@@ -11,7 +11,7 @@ import time
 import os
 from useful_functions import load_data, save_data
 from read_data import read_data_sst2, read_data_twitter
-os.environ["CUDA_VISIBLE_DEVICES"]="5"
+os.environ["CUDA_VISIBLE_DEVICES"]="6"
 
 def train(epoch, training_loader, model, optimizer, device, grad_step = 1, max_grad_norm = 10):
     tr_loss, tr_accuracy = 0, 0
@@ -133,9 +133,9 @@ def main(save_location, iteration, n_epochs, model_name, dataset_input, model_sa
     #Read dataset
     train_dataset, dev_dataset, test_dataset, evaluate_dataset = dataset_input
     
-    train_standard, _ = read_data_twitter(train_dataset)#read_data_sst2(train_dataset)
-    dev_standard, _ =  read_data_twitter(dev_dataset)#read_data_sst2(dev_dataset)
-    test_standard, _ = read_data_twitter(test_dataset)#read_data_sst2(test_dataset)
+    train_standard, _ = read_data_sst2(train_dataset)#read_data_twitter(train_dataset)
+    dev_standard, _ =  read_data_sst2(dev_dataset)#read_data_twitter(dev_dataset)
+    test_standard, _ = read_data_sst2(test_dataset)#read_data_twitter(test_dataset)
     evaluate_twitter, _ = read_data_twitter(evaluate_dataset)
 
     #Get dataloaders
@@ -223,25 +223,25 @@ def initialize_logfile(save_location, initialize = False):
 
 if __name__ == '__main__':
     n_iterations = 5
-    n_epochs = 10
+    n_epochs = 25
 
-    training_name = 'supervised/'#'zero-shot/'
+    training_name = 'zero-shot/'
     os.makedirs(training_name, exist_ok = True)
 
     #models = ['prajjwal1/bert-tiny', 'distilbert-base-uncased', 
     #        'bert-base-uncased', 'roberta-base', 'cardiffnlp/twitter-roberta-base-sep2022',
     #        'bert-large-uncased', 'vinai/bertweet-large', 'roberta-large']
 
-    models = ['roberta-base', 'cardiffnlp/twitter-roberta-base-sep2022']
+    models = ['prajjwal1/bert-tiny']
 
     #define dataset location
-    train_dataset = 'Dataset/TweetSemEval/train.txt'
-    dev_dataset = 'Dataset/TweetSemEval/dev.txt'
-    test_dataset = 'Dataset/TweetSemEval/test.txt'
+    '''train_dataset = "Dataset/TweetSemEval/train.txt"
+    dev_dataset = "Dataset/TweetSemEval/dev.txt"
+    test_dataset = "Dataset/TweetSemEval/test.txt" '''
 
-    '''train_dataset = "Dataset/SST2/train.tsv"
+    train_dataset = "Dataset/SST2/train.tsv"
     dev_dataset = "Dataset/SST2/dev.tsv"
-    test_dataset = "Dataset/SST2/test.tsv" '''
+    test_dataset = "Dataset/SST2/test.tsv" 
     evaluate_dataset = 'Dataset/TweetSemEval/test.txt'
     dataset_input = (train_dataset, dev_dataset, test_dataset, evaluate_dataset)
 

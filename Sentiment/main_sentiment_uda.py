@@ -11,7 +11,7 @@ import time
 import os
 from useful_functions import load_data, save_data
 from read_data import read_data_sst2, read_data_twitter
-os.environ["CUDA_VISIBLE_DEVICES"]="2"
+os.environ["CUDA_VISIBLE_DEVICES"]="4"
 
 def train(epoch, training_loader, model, optimizer, device, grad_step = 1, max_grad_norm = 10):
     tr_loss, tr_accuracy = 0, 0
@@ -134,8 +134,8 @@ def main(save_location, iteration, n_epochs, model_name, dataset_input, model_sa
     train_dataset, dev_dataset, test_dataset, evaluate_dataset = dataset_input
     
     train_standard = load_data(train_dataset)
-    dev_standard, _ =  read_data_sst2(dev_dataset)
-    test_standard, _ = read_data_sst2(test_dataset)
+    dev_standard =  load_data(dev_dataset)
+    test_standard = load_data(test_dataset)
     evaluate_twitter, _ = read_data_twitter(evaluate_dataset)
 
     #Get dataloaders
@@ -223,23 +223,16 @@ def initialize_logfile(save_location, initialize = False):
 
 if __name__ == '__main__':
     n_iterations = 5
-    n_epochs = 10
+    n_epochs = 25
 
-    training_name = 'sym/'#'zero-shot/'
+    training_name = 'alltransformations'
     os.makedirs(training_name, exist_ok = True)
 
     #models = ['prajjwal1/bert-tiny', 'distilbert-base-uncased', 
     #        'bert-base-uncased', 'roberta-base', 'cardiffnlp/twitter-roberta-base-sep2022',
     #        'bert-large-uncased', 'vinai/bertweet-large', 'roberta-large']
 
-    models = ['prajjwal1/bert-tiny', 'distilbert-base-uncased', 'bert-base-uncased']
-
-    #define dataset location
-    train_dataset = 'Dataset/SST2/train_sym.pkl'
-    dev_dataset = 'Dataset/SST2/dev.tsv'
-    test_dataset = 'Dataset/SST2/test.tsv'
-    evaluate_dataset = 'Dataset/TweetSemEval/test.txt'
-    dataset_input = (train_dataset, dev_dataset, test_dataset, evaluate_dataset)
+    models = ['prajjwal1/bert-tiny']
 
     #Flag initialize
     initialize_logfile_Flag = True
@@ -249,7 +242,7 @@ if __name__ == '__main__':
 
     for model_name in models:
         print(model_name)
-        save_location = training_name + model_name.replace('/', '-') + '/'
+        save_location = training_name + '/' + model_name.replace('/', '-') + '/'
         os.makedirs(save_location, exist_ok = True)
         model_save_location = save_location + 'saved_model'
 
@@ -259,6 +252,15 @@ if __name__ == '__main__':
         best_evaluate_acc = 0
         all_dev_acc, all_test_acc, all_test_tb_acc, all_best_epoch, all_best_tb_epoch = [], [], [], [], []
         for i in range(n_iterations):
+            #define dataset location
+            train_dataset = 'Dataset/SST2/' + training_name + '/' + 'train_' + training_name + '_' + str(i) +  '.pkl'
+            print(train_dataset)
+            dev_dataset = 'Dataset/SST2/' + training_name + '/' + 'dev_' + training_name + '_' + str(i) +  '.pkl'
+            test_dataset = 'Dataset/SST2/' + training_name + '/' + 'test_' + training_name + '_' + str(i) +  '.pkl'
+            evaluate_dataset = 'Dataset/TweetSemEval/test.txt'
+            dataset_input = (train_dataset, dev_dataset, test_dataset, evaluate_dataset)
+            
+            
             print(model_name, 'ITERATION:', i )
 
             f = open(in_train_logfile, 'a')

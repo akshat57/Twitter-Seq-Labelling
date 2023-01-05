@@ -1,0 +1,10 @@
+==================================================
+MODEL NAME : roberta-base
+==================================================
+ITERAION : 0
+BEST DEV ACC : 0.93234
+BEST TEST ACC : 0.94563
+BEST EPOCH : 5
+BEST EVALUATE ACC : 0.87963
+BEST EVALUATE EPOCH : 5
+------------------------------

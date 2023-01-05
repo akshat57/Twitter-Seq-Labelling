@@ -1,0 +1,10 @@
+==================================================
+MODEL NAME : vinai-bertweet-large
+==================================================
+ITERAION : 0
+BEST DEV ACC : 0.95757
+BEST TEST ACC : 0.95332
+BEST EPOCH : 5
+BEST EVALUATE ACC : 0.87585
+BEST EVALUATE EPOCH : 5
+------------------------------

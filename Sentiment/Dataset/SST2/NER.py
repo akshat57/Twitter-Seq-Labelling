@@ -8,9 +8,6 @@ import os
 os.environ["CUDA_VISIBLE_DEVICES"]="100"
 
 
-example = "My name is Wolfgang and I live in Berlin"
-tokens = example.split(' ')
-
 def do_ner(ner_pipeline, example):
     ner_results = nlp(example)
     
@@ -24,7 +21,7 @@ if __name__ == '__main__':
     model.to(device)
     nlp = pipeline("ner", model=model, tokenizer=tokenizer)
 
-    dataset, _ = read_data_sst2('train.tsv')
+    dataset, _ = read_data_sst2('test.tsv')
     ner_dataset = []
 
     for i, (label, sentence) in enumerate(dataset):
@@ -34,7 +31,7 @@ if __name__ == '__main__':
         if (i+1) % 100 == 0:
             print('DONE:', i + 1)
 
-    save_data('train_ner.pkl', ner_dataset)
+    save_data('test_ner.pkl', ner_dataset)
 
 
 
